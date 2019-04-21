@@ -1,5 +1,8 @@
 import React from 'react';
-// import { render } from '../../../enzyme.config';
+import '../../assets/style/header.css';
+import '../../assets/style/landing-page.css';
+import '../../assets/style/buttons.css';
+import '../../assets/style/howItWorks.css';
 
 const Header = () => {
   return (
@@ -8,7 +11,7 @@ const Header = () => {
       <header className="sticky-top">
         <nav className="navbar">
           <a href="./index.html" className="navbar-logo">
-            <img src=".../assets/img/Image-logo.png" alt="landing-page logo" />
+            <img src=".../assets/img/image-logo.png" alt="header-page logo" />
           </a>
           {/* <button className="hamburger-menu"><a href="./index.html" className="hamburger"></a></button> */}
           <ul className="navbar-menu">
