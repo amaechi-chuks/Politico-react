@@ -15,7 +15,6 @@
     "prettier:check": "prettier --check \"./src/**/*.jsx\"",
     "prettier:fix": "prettier --write \"./src/**/*.jsx\"",
     "check:lint-prettier": "npm run eslint:check && npm run prettier:check",
-    "pretest": "npm run check:lint-prettier",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
