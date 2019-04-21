@@ -1,2 +1,2 @@
 # Politico-react
-Converting the Politico App to react 
+Converting Politico App to react 
