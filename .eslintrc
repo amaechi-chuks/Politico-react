@@ -1,0 +1,41 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+      "react",
+      "prettier"
+  ],
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+      "no-unused-vars": 0,
+      "react/prefer-stateless-function": [
+        2, 
+        {
+           "ignorePureComponents": true
+           }
+      ],
+      "prettier/prettier": [
+          "error",
+          {
+            "trailingComma": "es5",
+            "tabWidth": 2,
+            "semi": true,
+            "singleQuote": true,
+            "endOfLine": "lf"
+          }
+        ]
+  },
+  "globals": {
+      "window": true,
+      "document": true,
+      "localStorage": true,
+      "FormData": true,
+      "FileReader": true,
+      "Blob": true,
+      "navigator": true
+    },
+  "extends": ["airbnb", "prettier"]
+}

@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "PT Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    background-color: #fffffa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #3c4859;
+  }
+  
+  body.modal-open {
+    overflow: hidden;
+  }
+  
+  /* Global/Custom Components */
+  a {
+    text-decoration: none;
+  }
+  
+  button,
+  input,
+  textarea,
+  select {
+    border: none;
+    font-family: "PT Sans", sans-serif;
+    font-size: 1em;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+  }
+  
+  input,
+  select,
+  textarea {
+    height: 45px;
+    text-align: left;
+    border: 2px solid #0facf3;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    background: transparent;
+  }
+  
+  input[type="file"] {
+    padding-top: 8px;
+  }
+  
+  textarea {
+    padding: 10px;
+    height: 90px;
+  }
+  /* Hero Section */
+.hero {
+    align-items: center;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(1, 6, 34, 0.78),
+        rgba(40, 180, 133, 0.8)
+      ),
+      url(../img/landing-page-image2.jpg);
+    background-size: cover;
+    height: calc(100vh - 74px);
+    justify-content: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 80px;
+  }
+  
+  .hero-title,
+  .hero-paragraph {
+    margin-bottom: 40px;
+  }
+  
+  .hero-title {
+    font-size: 3em;
+    text-transform: uppercase;
+  }
+  
+  .hero-paragraph {
+    font-size: 1.5em;
+  }
+  
+  .hero-cta {
+    display: flex;
+    width: 26%;
+    justify-content: space-between;
+  }
+  
+ /* For smartphones (<768px) */
+ @media screen and (max-width: 768px) {
+  .hero {
+    padding: 40px 25px;
+    height: auto;
+  }
+
+  .hero-title {
+    font-size: 2em;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .hero-paragraph {
+    font-size: 1.3em;
+  }
+
+  .hero-cta {
+    width: 65%;
+  }
+
+  .hero-cta > a:first-child {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .hero-cta,
+  .steps,
+  .featured-cards,
+  .profile {
+    flex-direction: column;
+  }
+}
