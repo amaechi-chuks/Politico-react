@@ -14,7 +14,7 @@ const login = (email, password) => {
       history.push('/');
     }).catch = err => {
       dispatch(failure(err));
-      // dispatch(alertActions.error('error.toString()'));
+      dispatch(alertActions.error('error.toString()'));
     };
   };
 
