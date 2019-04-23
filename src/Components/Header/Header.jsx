@@ -10,7 +10,7 @@ const Header = () => {
       <div className="modal-toggle" />
       <header className="sticky-top">
         <nav className="navbar">
-          <Link to="/HomePage" className="navbar-logo">
+          <Link to="/" className="navbar-logo">
             <img src={AppLogo} alt="App logo" />
           </Link>
           <Button value="menu" className="hamburger-menu">
