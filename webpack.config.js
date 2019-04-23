@@ -32,7 +32,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['.js', '.jsx', 'node'],
   },
   output: {
     path: `${__dirname}/public`,
@@ -44,5 +44,11 @@ module.exports = {
     contentBase: './public',
     hot: true,
     historyApiFallback: true,
+  },
+  externals: {
+    // global app config object
+    config: JSON.stringify({
+      apiUrl: 'http://localhost:6003',
+    }),
   },
 };
