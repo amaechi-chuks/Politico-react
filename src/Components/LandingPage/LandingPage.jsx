@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../assets/style/header.css';
 import '../../assets/style/landing-page.css';
 import '../../assets/style/buttons.css';
@@ -15,12 +16,12 @@ const LandingPage = () => {
           in the process through transparency.
         </p>
         <div className="hero-cta">
-          <a href="./signup.html" className="btn btn-white">
+          <Link to="/register" className="btn btn-white">
             Get Started
-          </a>
-          <a href="./view-more-candidate.html" className="btn btn-hollow">
+          </Link>
+          <Link to="view-more-candidate" className="btn btn-hollow">
             View Candidates
-          </a>
+          </Link>
         </div>
       </section>
     </div>

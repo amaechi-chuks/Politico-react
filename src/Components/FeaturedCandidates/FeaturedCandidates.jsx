@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../assets/style/howItWorks.css';
+import PartyLogo from '../../assets/img/PartyLogo.png';
+import PdpLogo from '../../assets/img/PdpLogo.png';
 
 const FeaturedCandidates = () => {
   return (
@@ -15,7 +18,7 @@ const FeaturedCandidates = () => {
                     <h1>
                       <img
                         className="party-logo"
-                        src="./assets/img/All_Progressives_Congress_logo.png"
+                        src={PartyLogo}
                         alt="APC logo"
                       />
                     </h1>
@@ -55,7 +58,7 @@ const FeaturedCandidates = () => {
                     <h1>
                       <img
                         className="party-logo"
-                        src="../assets/img/All_Progressives_Congress_logo.png"
+                        src={PartyLogo}
                         alt="APC logo"
                       />
                     </h1>
@@ -95,8 +98,8 @@ const FeaturedCandidates = () => {
                     <h1>
                       <img
                         className="party-logo"
-                        src="../../assets/img/PDP-logo.png"
-                        alt="APC logo"
+                        src={PdpLogo}
+                        alt="PDP logo"
                       />
                     </h1>
                     <span>Following</span>
@@ -135,7 +138,7 @@ const FeaturedCandidates = () => {
                     <h1>
                       <img
                         className="party-logo"
-                        src="./assets/img/PDP-logo.png"
+                        src={PdpLogo}
                         alt="APC logo"
                       />
                     </h1>
@@ -167,9 +170,9 @@ const FeaturedCandidates = () => {
             <i className="report-media" />
             Political Interest
           </div>
-          <a href="./view-more-candidate.html" className="btn btn-primary2">
+          <Link to="view-more-candidate" className="btn btn-primary2">
             View More Candidatess
-          </a>
+          </Link>
         </div>
       </section>
     </div>
