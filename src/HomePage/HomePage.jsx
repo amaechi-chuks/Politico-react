@@ -1,9 +1,9 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import Header from '../components/Header/Header';
-import LandingPage from '../components/LandingPage/LandingPage';
-import HowItWorks from '../components/HowItWorks/HowItWorks';
-import FeaturedCandidates from '../components/FeaturedCandidates/FeaturedCandidates';
+import Header from '../Components/Header/Header';
+import LandingPage from '../Components/LandingPage/LandingPage';
+import HowItWorks from '../Components/HowItWorks/HowItWorks';
+import FeaturedCandidates from '../Components/FeaturedCandidates/FeaturedCandidates';
 
 export const HomePage = () => {
   return (

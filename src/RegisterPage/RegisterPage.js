@@ -10,7 +10,7 @@ import { userActions } from '../_actions';
 import '../assets/style/buttons.css';
 import '../assets/style/howItWorks.css';
 import loading from '../assets/img/loading.gif';
-import Header from '../components/Header/Header';
+import Header from '../Components/Header/Header';
 
 class RegisterPage extends Component {
   constructor(props) {
