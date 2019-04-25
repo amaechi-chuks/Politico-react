@@ -1,16 +1,11 @@
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
-import '../assets/style/buttons.css';
-import '../assets/style/howItWorks.css';
 import loading from '../assets/img/loading.gif';
 import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -25,6 +20,7 @@ class RegisterPage extends Component {
     event.preventDefault();
     const user = {};
     const formData = new FormData(event.target);
+    // eslint-disable-next-line no-restricted-syntax
     for (const entry of formData.entries()) {
       const [keys, values] = entry;
       user[keys] = values;
@@ -51,13 +47,13 @@ class RegisterPage extends Component {
                 <label htmlFor="firstname">
                   FirstName
                   <span>*</span>
+                  <input
+                    type="firstname"
+                    id="firstname"
+                    name="firstName"
+                    className="form-element"
+                  />
                 </label>
-                <input
-                  type="firstname"
-                  id="firstname"
-                  name="firstName"
-                  className="form-element"
-                />
                 {submitted && !user.lastName && (
                   <div className="help-block">Last Name is required</div>
                 )}
@@ -183,6 +179,7 @@ class RegisterPage extends Component {
             </form>
           </section>
         </main>
+        <Footer />
       </div>
     );
   }
