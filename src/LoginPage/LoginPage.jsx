@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
-import '../assets/style/buttons.css';
-import '../assets/style/howItWorks.css';
 import loading from '../assets/img/loading.gif';
 import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -111,10 +110,12 @@ class LoginPage extends Component {
             </form>
           </section>
         </main>
+        <Footer />
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   const { loggingIn } = state.authentication;
   return {

@@ -4,6 +4,7 @@ import Header from '../Components/Header/Header';
 import LandingPage from '../Components/LandingPage/LandingPage';
 import HowItWorks from '../Components/HowItWorks/HowItWorks';
 import FeaturedCandidates from '../Components/FeaturedCandidates/FeaturedCandidates';
+import Footer from '../Components/Footer/Footer';
 
 export const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ export const HomePage = () => {
       <LandingPage />
       <HowItWorks />
       <FeaturedCandidates />
+      <Footer />
     </div>
   );
 };
