@@ -4,14 +4,14 @@
 import config from 'path';
 import { authHeader } from '../_helpers';
 
-const login = (email, password) => {
+const login = async (email, password) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   };
 
-  return fetch(
+  await fetch(
     'https://politico-software.herokuapp.com/api/v1/auth/login',
     requestOptions
   )

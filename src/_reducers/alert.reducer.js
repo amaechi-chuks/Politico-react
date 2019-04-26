@@ -1,18 +1,11 @@
-import { alertConstants, userConstants } from '../_constants';
+import { alertConstants } from '../_constants';
 
-const initialState = {
-  loginSuccess: null,
-  loginError: null,
-  load: false,
-};
-
-export const alert = (state = initialState, action) => {
+export function alert(state = {}, action) {
   switch (action.type) {
-    case userConstants.LOGIN_SUCCESS:
+    case alertConstants.SUCCESS:
       return {
         type: 'alert-success',
-        loginSuccess: action.user,
-        load: false,
+        message: action.message,
       };
     case alertConstants.ERROR:
       return {
@@ -21,13 +14,7 @@ export const alert = (state = initialState, action) => {
       };
     case alertConstants.CLEAR:
       return {};
-    case userConstants.LOGIN_FAILURE:
-      return {
-        type: 'alert-danger',
-        loginError: action.error,
-        load: false,
-      };
     default:
       return state;
   }
-};
+}
