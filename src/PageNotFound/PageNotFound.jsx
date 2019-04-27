@@ -1,12 +1,12 @@
 import React from 'react';
 import errorDisplay from '../assets/img/error.gif';
-import Header from '../Components/Header/Header';
+// import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
 
 const notFound = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className="page-not-found">
         <img src={errorDisplay} alt="eror" />
       </div>

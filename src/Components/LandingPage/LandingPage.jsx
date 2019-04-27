@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../assets/style/header.css';
+import '../../assets/style/global/header.css';
 import '../../assets/style/landing-page.css';
-import '../../assets/style/buttons.css';
+import '../../assets/style/global/buttons.css';
 import '../../assets/style/howItWorks.css';
 
 const LandingPage = () => {

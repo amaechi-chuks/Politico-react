@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/style/howItWorks.css';
 import AppLogo from '../../assets/img/AppLogo.png';
-import Button from '../lib/Buttons';
+import Button from '../Global/Buttons';
 
 const Header = () => {
   return (

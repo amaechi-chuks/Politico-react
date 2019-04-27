@@ -11,7 +11,6 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
 
-    // eslint-disable-next-line react/destructuring-assignment
     this.props.dispatch(userActions.logout());
 
     this.state = {
@@ -51,6 +50,9 @@ class LoginPage extends Component {
             <h2 className="section-title1">Login</h2>
             <form className="form-card" onSubmit={this.handleSubmit}>
               <div className={submitted && !email ? ' has-error' : ''}>
+                {submitted && !email && (
+                  <div className="help-block">Email is required</div>
+                )}
                 <label htmlFor="email">
                   Email Address
                   <span>*</span>
@@ -63,11 +65,11 @@ class LoginPage extends Component {
                     onChange={this.handleChange}
                   />
                 </label>
-                {submitted && !email && (
-                  <div className="help-block">email is required</div>
-                )}
               </div>
               <div className={submitted && !password ? ' has-error' : ''}>
+                {submitted && !password && (
+                  <div className="help-block">Password is required</div>
+                )}
                 <label htmlFor="password">
                   Password
                   <span>*</span>
@@ -80,9 +82,6 @@ class LoginPage extends Component {
                     onChange={this.handleChange}
                   />
                 </label>
-                {submitted && !password && (
-                  <div className="help-block">Password is required</div>
-                )}
               </div>
               <div className="forgot--reset">
                 <Link to="/password-reset" className="text--color--grey">
