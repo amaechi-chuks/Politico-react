@@ -1,23 +1,10 @@
 /* eslint-disable no-shadow */
-/* eslint-disable no-use-before-define */
 import { userConstants } from '../_constants';
 import { userService } from '../_services';
 import { alertActions } from './alert.actions';
 import { history } from '../_helpers';
 
 const login = (email, password) => {
-  return dispatch => {
-    dispatch(request({ email }));
-
-    userService.login(email, password).then(user => {
-      dispatch(success(user));
-      history.push('/');
-    }).catch = err => {
-      dispatch(failure(err));
-      dispatch(alertActions.error('error.toString()'));
-    };
-  };
-
   function request(user) {
     return { type: userConstants.LOGIN_REQUEST, user };
   }
@@ -27,6 +14,17 @@ const login = (email, password) => {
   function failure(error) {
     return { type: userConstants.LOGIN_FAILURE, error };
   }
+  return dispatch => {
+    dispatch(request({ email }));
+
+    userService.login(email, password).then(user => {
+      dispatch(success(user));
+      history.push('/user');
+    }).catch = err => {
+      dispatch(failure(err));
+      dispatch(alertActions.error('error.toString()'));
+    };
+  };
 };
 
 const logout = () => {
@@ -35,6 +33,15 @@ const logout = () => {
 };
 
 const register = user => {
+  function request(user) {
+    return { type: userConstants.REGISTER_REQUEST, user };
+  }
+  function success(user) {
+    return { type: userConstants.REGISTER_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.REGISTER_FAILURE, error };
+  }
   return dispatch => {
     dispatch(request(user));
 
@@ -50,19 +57,18 @@ const register = user => {
       }
     );
   };
-
-  function request(user) {
-    return { type: userConstants.REGISTER_REQUEST, user };
-  }
-  function success(user) {
-    return { type: userConstants.REGISTER_SUCCESS, user };
-  }
-  function failure(error) {
-    return { type: userConstants.REGISTER_FAILURE, error };
-  }
 };
 
 const getAll = () => {
+  function request() {
+    return { type: userConstants.GETALL_REQUEST };
+  }
+  function success(users) {
+    return { type: userConstants.GETALL_SUCCESS, users };
+  }
+  function failure(error) {
+    return { type: userConstants.GETALL_FAILURE, error };
+  }
   return dispatch => {
     dispatch(request());
 
@@ -73,21 +79,20 @@ const getAll = () => {
         error => dispatch(failure(error.toString()))
       );
   };
-
-  function request() {
-    return { type: userConstants.GETALL_REQUEST };
-  }
-  function success(users) {
-    return { type: userConstants.GETALL_SUCCESS, users };
-  }
-  function failure(error) {
-    return { type: userConstants.GETALL_FAILURE, error };
-  }
 };
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 const remove = id => {
   return dispatch => {
+    function request(id) {
+      return { type: userConstants.DELETE_REQUEST, id };
+    }
+    function success(id) {
+      return { type: userConstants.DELETE_SUCCESS, id };
+    }
+    function failure(id, error) {
+      return { type: userConstants.DELETE_FAILURE, id, error };
+    }
     dispatch(request(id));
 
     userService
@@ -97,21 +102,33 @@ const remove = id => {
         error => dispatch(failure(id, error.toString()))
       );
   };
+};
+const getUser = id => {
+  return dispatch => {
+    function request(id) {
+      return { type: userConstants.GET_USER_REQUEST, id };
+    }
+    function success(id) {
+      return { type: userConstants.GET_USER_SUCCESS, id };
+    }
+    function failure(id, error) {
+      return { type: userConstants.DGET_USER, id, error };
+    }
+    dispatch(request(id));
 
-  function request(id) {
-    return { type: userConstants.DELETE_REQUEST, id };
-  }
-  function success(id) {
-    return { type: userConstants.DELETE_SUCCESS, id };
-  }
-  function failure(id, error) {
-    return { type: userConstants.DELETE_FAILURE, id, error };
-  }
+    userService
+      .getUser(id)
+      .then(
+        user => dispatch(success(id)),
+        error => dispatch(failure(id, error.toString()))
+      );
+  };
 };
 export const userActions = {
   login,
   logout,
   register,
   getAll,
+  getUser,
   delete: remove,
 };

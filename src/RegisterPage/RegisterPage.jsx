@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable no-restricted-syntax */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -20,7 +21,6 @@ class RegisterPage extends Component {
     event.preventDefault();
     const user = {};
     const formData = new FormData(event.target);
-    // eslint-disable-next-line no-restricted-syntax
     for (const entry of formData.entries()) {
       const [keys, values] = entry;
       user[keys] = values;
@@ -39,11 +39,10 @@ class RegisterPage extends Component {
           <section className="container form-container">
             <h2 className="section-title1">Sign Up</h2>
             <form className="form-card" onSubmit={this.handleChange}>
-              <div
-                className={`form-group${
-                  submitted && !user.lastName ? ' has-error' : ''
-                }`}
-              >
+              <div className={submitted && !user.firstName ? ' has-error' : ''}>
+                {submitted && !user.firstName && (
+                  <div className="help-block">First Name is required</div>
+                )}
                 <label htmlFor="firstname">
                   FirstName
                   <span>*</span>
@@ -54,9 +53,6 @@ class RegisterPage extends Component {
                     className="form-element"
                   />
                 </label>
-                {submitted && !user.lastName && (
-                  <div className="help-block">Last Name is required</div>
-                )}
               </div>
               <div
                 className={`form-group${

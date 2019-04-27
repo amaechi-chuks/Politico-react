@@ -10,6 +10,19 @@
     "jest": true
   },
   "rules": {
+    "prefer-destructuring": ["error", {
+      "VariableDeclarator": {
+        "array": false,
+        "object": false
+      },
+      "AssignmentExpression": {
+        "array": false,
+        "object": false
+      }
+    }, {
+      "enforceForRenamedProperties": false
+    }],
+    "react/destructuring-assignment": ["off", { "extensions": [".jsx", ".jsx"] }],
     "react/forbid-prop-types": 0,
       "no-unused-vars": 0,
       "import/prefer-default-export": "off",

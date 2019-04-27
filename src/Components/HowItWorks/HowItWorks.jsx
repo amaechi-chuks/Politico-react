@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/style/buttons.css';
+import '../../assets/style/global/buttons.css';
 import '../../assets/style/howItWorks.css';
 
 const HowItWorks = () => {

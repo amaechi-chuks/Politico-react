@@ -10,8 +10,10 @@ import { Provider } from 'react-redux';
 import { history, store } from './_helpers';
 import { HomePage } from './HomePage';
 import { LoginPage } from './LoginPage';
+import Layout from './Containers/Home/Layout';
 import { RegisterPage } from './RegisterPage';
 import NotFound from './PageNotFound/PageNotFound';
+import UserProfile from './Userprofile/UserProfile';
 
 const App = () => (
   <BrowserRouter>
@@ -22,6 +24,11 @@ const App = () => (
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
+            <Route
+              path="/user"
+              component={UserProfile}
+              render={() => <Layout />}
+            />
             <Route path="/notFound" component={NotFound} />
             <Redirect to="notFound" />
           </Switch>
