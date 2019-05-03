@@ -27,7 +27,7 @@ const Header = () => {
               <Link to="view-more-candidate">View Candidatess</Link>
             </li>
             <li className="navbar-link">
-              <Link to="admin-profile">Admin</Link>
+              <Link to="/">Logout</Link>
             </li>
           </ul>
         </nav>

@@ -1,169 +1,140 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-restricted-syntax */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { userActions } from '../_actions';
-import loading from '../assets/img/loading.gif';
+import { Link, Redirect } from 'react-router-dom';
+import Notifications, { notify } from 'react-notify-toast';
+import Input from '../Components/Global/Inputs';
+import Loader from '../Components/Global/Loader';
+import Button from '../Components/Global/Buttons';
+import authServices from '../_services/auth.service';
+import handleErrorMessage from '../_helpers/handleErrorMessage.js';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
 
 class RegisterPage extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      submitted: false,
+      signupDetatils: {
+        firstName: '',
+        lastName: '',
+        otherName: '',
+        phoneNumber: '',
+        email: '',
+        password: '',
+      },
+      loading: false,
+      redirect: false,
     };
   }
 
-  handleChange = event => {
-    event.preventDefault();
-    const user = {};
-    const formData = new FormData(event.target);
-    for (const entry of formData.entries()) {
-      const [keys, values] = entry;
-      user[keys] = values;
+  handleChange = ({ target }) => {
+    const { signupDetatils } = this.state;
+    signupDetatils[target.id] = target.value;
+    this.setState({ signupDetatils });
+  };
+
+  handleClick = async () => {
+    this.setState({ loading: true });
+    const { signupDetatils } = this.state;
+    const user = await authServices.auth('signup', signupDetatils);
+    if (user.status >= 400) {
+      this.setState({ loading: false });
+      notify.show(handleErrorMessage(user.error), 'error');
     }
-    const { dispatch } = this.props;
-    dispatch(userActions.register(user));
+
+    if (user.status === 201) {
+      this.setState({ loading: true });
+      localStorage.setItem('token', user.data[0].token);
+      localStorage.setItem('user', JSON.stringify(user.data[0].user));
+      this.setState({ redirect: true });
+    }
   };
 
   render() {
-    const { registering } = this.props;
-    const { user, submitted } = this.state;
+    const { signupDetatils, loading, redirect } = this.state;
+
     return (
-      <div>
+      <React.Fragment>
+        <Notifications />
+        {loading && <Loader />}
         <Header />
         <main>
           <section className="container form-container">
             <h2 className="section-title1">Sign Up</h2>
             <form className="form-card" onSubmit={this.handleChange}>
-              <div className={submitted && !user.firstName ? ' has-error' : ''}>
-                {submitted && !user.firstName && (
-                  <div className="help-block">First Name is required</div>
-                )}
-                <label htmlFor="firstname">
-                  FirstName
-                  <span>*</span>
-                  <input
-                    type="firstname"
-                    id="firstname"
-                    name="firstName"
-                    className="form-element"
-                  />
-                </label>
-              </div>
-              <div
-                className={`form-group${
-                  submitted && !user.lastName ? ' has-error' : ''
-                }`}
-              >
-                <label htmlFor="lastname">
-                  Last name
-                  <span>*</span>
-                  <input
-                    type="text"
-                    id="lastname"
-                    name="lastName"
-                    className="form-element"
-                  />
-                </label>
-                {submitted && !user.lastName && (
-                  <div className="help-block">Last Name is required</div>
-                )}
-              </div>
-
-              <div
-                className={`form-group${
-                  submitted && !user.otherName ? ' has-error' : ''
-                }`}
-              >
-                <label htmlFor="othername">
-                  Other name
-                  <input
-                    type="text"
-                    id="othername"
-                    name="otherName"
-                    className="form-element"
-                  />
-                </label>
-                {submitted && !user.otherName && (
-                  <div className="help-block">Other Name is required</div>
-                )}
-              </div>
-              <div
-                className={`form-group${
-                  submitted && !user.email ? ' has-error' : ''
-                }`}
-              >
-                <label htmlFor="email">
-                  Email Address
-                  <span>*</span>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="form-element"
-                  />
-                </label>
-                {submitted && !user.email && (
-                  <div className="help-block">Email is required</div>
-                )}
-              </div>
-
-              <div
-                className={`form-group${
-                  submitted && !user.phoneNumber ? ' has-error' : ''
-                }`}
-              >
-                <label htmlFor="phonenumber">
-                  Phone Number
-                  <input
-                    type="number"
-                    id="phonenumber"
-                    name="phoneNumber"
-                    className="form-element"
-                  />
-                </label>
-                {submitted && !user.phoneNumber && (
-                  <div className="help-block">Phone Number is required</div>
-                )}
-              </div>
-
-              <div
-                className={`form-group${
-                  submitted && !user.password ? ' has-error' : ''
-                }`}
-              >
-                <label htmlFor="password">
-                  Password
-                  <span>*</span>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="form-element"
-                  />
-                </label>
-                {submitted && !user.password && (
-                  <div className="help-block">Password is required</div>
-                )}
-              </div>
-              <button
-                type="submit"
+              <Input
+                autoFocus="autoFocus"
+                type="text"
+                id="firstName"
+                label="firstName"
+                name="firstName"
+                className="signLabel"
+                placeholder="John"
+                required="required"
+                value={signupDetatils.firstName}
+                onChange={this.handleChange}
+              />
+              <Input
+                autoFocus="autoFocus"
+                type="text"
+                id="lastName"
+                label="lastName"
+                name="lastName"
+                className="signLabel"
+                placeholder="Snow"
+                required="required"
+                value={signupDetatils.lastName}
+                onChange={this.handleChange}
+              />
+              <Input
+                autoFocus="autoFocus"
+                type="text"
+                id="otherName"
+                label="otherName"
+                name="otherName"
+                className="signLabel"
+                placeholder="Snow"
+                required="required"
+                value={signupDetatils.otherName}
+                onChange={this.handleChange}
+              />
+              <Input
+                type="email"
+                id="email"
+                label="Email"
+                name="email"
+                className="signLabel"
+                placeholder="amaechio@gmail.com"
+                required="required"
+                value={signupDetatils.email}
+                onChange={this.handleChange}
+              />
+              <Input
+                type="number"
+                id="phoneNumber"
+                label="Phone Number"
+                name="phoneNumber"
+                className="signLabel"
+                placeholder="0811111101"
+                required="required"
+                value={signupDetatils.phoneNumber}
+                onChange={this.handleChange}
+              />
+              <Input
+                type="password"
+                id="password"
+                label="Password"
+                className="signLabel"
+                placeholder="Password"
+                required="required"
+                value={signupDetatils.password}
+                onChange={this.handleChange}
+              />
+              <Button
+                value="Sign Up"
                 id="signup"
                 className="btn btn-primary2 updat"
-              >
-                Register
-              </button>
-              {registering && (
-                <img
-                  style={{ height: 100, width: 100, alignItems: 'center' }}
-                  src={loading}
-                  alt="loading"
-                />
-              )}
+                onClick={this.handleClick}
+              />
               <div className="margin--top--10 margin--below ">
                 <p className="text--primary1">
                   Already have an account?
@@ -176,17 +147,10 @@ class RegisterPage extends Component {
           </section>
         </main>
         <Footer />
-      </div>
+        {redirect && <Redirect to="/login" />}
+      </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const { registering } = state.registration;
-  return {
-    registering,
-  };
-};
-
-const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
-export { connectedRegisterPage as RegisterPage };
+export default RegisterPage;

@@ -1,10 +1,11 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-// setup fake backend
-// import { configureFakeBackend } from './_helpers';
-
-// configureFakeBackend();
-ReactDOM.render(<App />, document.getElementById('app'));
-// module.hot.accept();
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('app')
+);
