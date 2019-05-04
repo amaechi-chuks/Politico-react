@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Notifications, { notify } from 'react-notify-toast';
+import { Roller } from 'react-awesome-spinners';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Input from '../Components/Global/Inputs';
-import Loader from '../Components/Global/Loader';
 import Button from '../Components/Global/Buttons';
-import authServices from '../_services/auth.service';
-import handleErrorMessage from '../_helpers/handleErrorMessage.js';
+import authAction from '../_actions/auth.actions';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
+import '../assets/style/global/spinner.css';
 
-class RegisterPage extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,8 +23,6 @@ class RegisterPage extends Component {
         email: '',
         password: '',
       },
-      loading: false,
-      redirect: false,
     };
   }
 
@@ -33,34 +33,24 @@ class RegisterPage extends Component {
   };
 
   handleClick = async () => {
-    this.setState({ loading: true });
     const { signupDetatils } = this.state;
-    const user = await authServices.auth('signup', signupDetatils);
-    if (user.status >= 400) {
-      this.setState({ loading: false });
-      notify.show(handleErrorMessage(user.error), 'error');
-    }
-
-    if (user.status === 201) {
-      this.setState({ loading: true });
-      localStorage.setItem('token', user.data[0].token);
-      localStorage.setItem('user', JSON.stringify(user.data[0].user));
-      this.setState({ redirect: true });
-    }
+    const { signup } = this.props;
+    signup(signupDetatils);
   };
 
   render() {
-    const { signupDetatils, loading, redirect } = this.state;
-
+    const { signupDetatils } = this.state;
+    const { auth } = this.props;
+    const { loading, redirect, isadmin } = auth;
     return (
       <React.Fragment>
         <Notifications />
-        {loading && <Loader />}
         <Header />
         <main>
           <section className="container form-container">
+            <div className="spinner">{loading && <Roller />}</div>
             <h2 className="section-title1">Sign Up</h2>
-            <form className="form-card" onSubmit={this.handleChange}>
+            <form className="form-card">
               <Input
                 autoFocus="autoFocus"
                 type="text"
@@ -147,10 +137,22 @@ class RegisterPage extends Component {
           </section>
         </main>
         <Footer />
-        {redirect && <Redirect to="/login" />}
+        {isadmin && redirect && <Redirect to="/admin" />}
+        {!isadmin && redirect && <Redirect to="/login" />}
       </React.Fragment>
     );
   }
 }
 
-export default RegisterPage;
+Signup.propTypes = {
+  signup: PropTypes.func.isRequired,
+  auth: PropTypes.shape().isRequired,
+};
+
+const { signup } = authAction;
+
+const mapStateToProps = ({ auth }) => ({ auth });
+export default connect(
+  mapStateToProps,
+  { signup }
+)(Signup);

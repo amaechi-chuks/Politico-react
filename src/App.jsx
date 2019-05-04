@@ -5,7 +5,7 @@ import Notifications from 'react-notify-toast';
 import { HomePage } from './HomePage';
 import Login from './LoginPage/LoginPage';
 import Layout from './Containers/Home/Layout';
-import RegisterPage from './RegisterPage/RegisterPage';
+import Signup from './Signup/Signup';
 import NotFound from './PageNotFound/PageNotFound';
 import UserProfile from './Userprofile/UserProfile';
 import store from './_helpers/store';
@@ -24,7 +24,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={Login} />
-            <Route path="/register" component={RegisterPage} />
+            <Route path="/signup" component={Signup} />
             <Route
               path="/user"
               component={UserProfile}

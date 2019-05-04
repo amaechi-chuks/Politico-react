@@ -34,7 +34,7 @@ module.exports = {
   verbose: false,
 
   transform: {
-    '.+\\.(css|styl|less|sass|scss)$':
+    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       '<rootDir>/node_modules/jest-css-modules-transform',
     '^.+\\.js?$': 'babel-jest',
     '^.+\\.jsx?$': 'babel-jest',
