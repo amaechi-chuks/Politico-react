@@ -6,7 +6,6 @@ import avatar from '../assets/img/avatar.png';
 import upload from '../_services/upload';
 import Loader from '../Components/Global/Loader';
 import ProfileTable from './ProfileTable';
-import Footer from '../Components/Footer/Footer';
 import Button from '../Components/Global/Buttons';
 
 class UserProfile extends Component {
@@ -84,7 +83,6 @@ class UserProfile extends Component {
             <ProfileTable />
           </div>
         </section>
-        <Footer />
       </div>
     );
   }
