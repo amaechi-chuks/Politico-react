@@ -21,13 +21,13 @@ const Header = () => {
               <Link to="/login">Login</Link>
             </li>
             <li className="navbar-link">
-              <Link to="/register">Sign Up</Link>
+              <Link to="/signup">Sign Up</Link>
             </li>
             <li className="navbar-link">
               <Link to="view-more-candidate">View Candidatess</Link>
             </li>
             <li className="navbar-link">
-              <Link to="admin-profile">Admin</Link>
+              <Link to="/">Logout</Link>
             </li>
           </ul>
         </nav>

@@ -1,41 +1,41 @@
-import React from 'react';
-import {
-  BrowserRouter,
-  Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { history, store } from './_helpers';
+import Notifications from 'react-notify-toast';
 import { HomePage } from './HomePage';
-import { LoginPage } from './LoginPage';
+import Login from './LoginPage/LoginPage';
 import Layout from './Containers/Home/Layout';
-import { RegisterPage } from './RegisterPage';
+import Signup from './Signup/Signup';
 import NotFound from './PageNotFound/PageNotFound';
 import UserProfile from './Userprofile/UserProfile';
+import store from './_helpers/store';
 
-const App = () => (
-  <BrowserRouter>
-    <div className="col-lg-12 col-lg-12">
-      <Provider store={store}>
-        <Router history={history}>
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Provider store={store}>
+          <Notifications />
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
             <Route
               path="/user"
               component={UserProfile}
-              render={() => <Layout />}
+              // render={() => <Layout />}
             />
             <Route path="/notFound" component={NotFound} />
             <Redirect to="notFound" />
           </Switch>
-        </Router>
-      </Provider>
-    </div>
-  </BrowserRouter>
-);
-
+        </Provider>
+      </React.Fragment>
+    );
+  }
+}
 export default App;

@@ -1,103 +1,84 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import Notifications, { notify } from 'react-notify-toast';
 import { connect } from 'react-redux';
-import { userActions } from '../_actions';
-import loading from '../assets/img/loading.gif';
+import PropTypes from 'prop-types';
+import Loader from '../Components/Global/Loader';
+import Button from '../Components/Global/Buttons';
+import Input from '../Components/Global/Inputs';
+import authAction from '../_actions/auth.actions';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
+import '../assets/style/global/spinner.css';
 
-class LoginPage extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
-
-    this.props.dispatch(userActions.logout());
-
     this.state = {
-      email: '',
-      password: '',
-      submitted: false,
+      loginDetatils: {
+        email: '',
+        password: '',
+      },
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    this.setState({ submitted: true });
-    const { email, password } = this.state;
-    const { dispatch } = this.props;
-    if (email && password) {
-      dispatch(userActions.login(email, password));
-    }
+  handleChange = ({ target }) => {
+    const { loginDetatils } = this.state;
+    loginDetatils[target.id] = target.value;
+    this.setState({ loginDetatils });
   };
 
-  handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
+  handleClick = () => {
+    const { loginDetatils } = this.state;
+    const { login } = this.props;
+    login(loginDetatils);
   };
 
   render() {
-    const { loggingIn } = this.props;
-    const { email, password, submitted } = this.state;
+    const { loginDetatils } = this.state;
+    const { auth } = this.props;
+    const { loading, redirect, isadmin } = auth;
+
     return (
-      <div>
+      <React.Fragment>
+        <Notifications />
         <Header />
         <main>
           <section className="container form-container">
+            <div className="spinner">{loading && <Loader />}</div>
             <h2 className="section-title1">Login</h2>
-            <form className="form-card" onSubmit={this.handleSubmit}>
-              <div className={submitted && !email ? ' has-error' : ''}>
-                {submitted && !email && (
-                  <div className="help-block">Email is required</div>
-                )}
-                <label htmlFor="email">
-                  Email Address
-                  <span>*</span>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="form-element"
-                    value={email}
-                    onChange={this.handleChange}
-                  />
-                </label>
-              </div>
-              <div className={submitted && !password ? ' has-error' : ''}>
-                {submitted && !password && (
-                  <div className="help-block">Password is required</div>
-                )}
-                <label htmlFor="password">
-                  Password
-                  <span>*</span>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    className="form-element"
-                    value={password}
-                    onChange={this.handleChange}
-                  />
-                </label>
-              </div>
+            <form className="form-card">
+              <Input
+                autoFocus="autoFocus"
+                type="text"
+                id="email"
+                label="Email"
+                className="signLabel"
+                placeholder="johndeo@gmail.com"
+                required="required"
+                value={loginDetatils.email}
+                onChange={this.handleChange}
+              />
+              <Input
+                type="password"
+                id="password"
+                label="Password"
+                className="signLabel"
+                placeholder="Password"
+                required="required"
+                value={loginDetatils.password}
+                onChange={this.handleChange}
+              />
               <div className="forgot--reset">
                 <Link to="/password-reset" className="text--color--grey">
                   Forgot Password?
                 </Link>
               </div>
-              <button type="submit" className="btn btn-primary user-form">
-                Login
-              </button>
-              {loggingIn && (
-                <img
-                  style={{ height: 100, width: 100, alignItems: 'center' }}
-                  src={loading}
-                  alt="loading"
-                />
-              )}
+              <Button
+                value="Login"
+                className="btn btn-primary user-form"
+                onClick={this.handleClick}
+              />
               <div className="margin--top--10 margin--below ">
                 <p className="text--primary1">
                   Dont have an account?
@@ -110,17 +91,22 @@ class LoginPage extends Component {
           </section>
         </main>
         <Footer />
-      </div>
+        {isadmin && redirect && <Redirect to="/admin" />}
+        {!isadmin && redirect && <Redirect to="/user" />}
+      </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const { loggingIn } = state.authentication;
-  return {
-    loggingIn,
-  };
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  auth: PropTypes.shape().isRequired,
 };
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export { connectedLoginPage as LoginPage };
+const { login } = authAction;
+
+const mapStateToProps = ({ auth }) => ({ auth });
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
