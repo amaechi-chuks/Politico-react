@@ -10,6 +10,7 @@
     "start:dev": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
     "lint": "eslint src/**/*.js src/**/*.jsx",
+    "precommit": "NODE_ENV=production lint-staged",
     "eslint:check": "node_modules/eslint/bin/eslint.js \"src/**/*.jsx\" && node_modules/eslint/bin/eslint.js \"src/**/*.js\"",
     "prettier:check": "prettier --check \"./src/**/*.jsx\"",
     "prettier:fix": "prettier --write \"./src/**/*.jsx\"",
@@ -18,7 +19,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
-    "coveralls": "jest --coverage && cat coverage/lcov.info | coveralls"
+    "coveralls": "jest --coverage && cat coverage/lcov.info | coveralls",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
