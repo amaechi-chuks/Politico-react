@@ -3,12 +3,13 @@ import { Link, Redirect } from 'react-router-dom';
 import Notifications, { notify } from 'react-notify-toast';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Button from '../Components/Global/Buttons';
 import Loader from '../Components/Global/Loader';
+import Button from '../Components/Global/Buttons';
 import Input from '../Components/Global/Inputs';
 import authAction from '../_actions/auth.actions';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
+import '../assets/style/global/spinner.css';
 
 class Login extends Component {
   constructor(props) {
@@ -41,10 +42,10 @@ class Login extends Component {
     return (
       <React.Fragment>
         <Notifications />
-        {loading && <Loader />}
         <Header />
         <main>
           <section className="container form-container">
+            <div className="spinner">{loading && <Loader />}</div>
             <h2 className="section-title1">Login</h2>
             <form className="form-card">
               <Input

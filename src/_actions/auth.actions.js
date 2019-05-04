@@ -28,6 +28,18 @@ const loginFailure = () => {
     type: actions.LOGIN_FAILURE,
   };
 };
+const signupSuccess = token => {
+  return {
+    type: actions.SIGNUP_SUCCESS,
+    token,
+  };
+};
+
+const signupFailure = () => {
+  return {
+    type: actions.SIGNUP_FAILURE,
+  };
+};
 
 const logoutUser = () => {
   return {
@@ -55,7 +67,26 @@ const login = userDetails => {
     }
   };
 };
+const signup = userDetails => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    const res = await authServices.auth('signup', userDetails);
+    if (res.status >= 400) {
+      dispatch(signupFailure());
+      notify.show(handleErrorMessage(res.error), 'error');
+    }
 
+    if (res.status === 201) {
+      localStorage.setItem('token', res.data[0].token);
+      localStorage.setItem('user', JSON.stringify(res.data[0].user));
+      if (res.data[0].user.isadmin) {
+        dispatch(signupSuccess(res.data[0].token));
+      } else {
+        dispatch(signupSuccess(res.data[0].token));
+      }
+    }
+  };
+};
 const logout = () => {
   return dispatch => {
     localStorage.clear();
@@ -63,6 +94,6 @@ const logout = () => {
   };
 };
 
-const authAction = { login, logout };
+const authAction = { login, logout, signup };
 
 export default authAction;

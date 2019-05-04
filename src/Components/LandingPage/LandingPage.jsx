@@ -16,7 +16,7 @@ const LandingPage = () => {
           in the process through transparency.
         </p>
         <div className="hero-cta">
-          <Link to="/register" className="btn btn-white">
+          <Link to="/signup" className="btn btn-white">
             Get Started
           </Link>
           <Link to="view-more-candidate" className="btn btn-hollow">
