@@ -15,7 +15,7 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signupDetatils: {
+      signupDetails: {
         firstName: '',
         lastName: '',
         otherName: '',
@@ -27,19 +27,19 @@ class Signup extends Component {
   }
 
   handleChange = ({ target }) => {
-    const { signupDetatils } = this.state;
-    signupDetatils[target.id] = target.value;
-    this.setState({ signupDetatils });
+    const { signupDetails } = this.state;
+    signupDetails[target.id] = target.value;
+    this.setState({ signupDetails });
   };
 
-  handleClick = async () => {
-    const { signupDetatils } = this.state;
+  handleClick = () => {
+    const { signupDetails } = this.state;
     const { signup } = this.props;
-    signup(signupDetatils);
+    signup(signupDetails);
   };
 
   render() {
-    const { signupDetatils } = this.state;
+    const { signupDetails } = this.state;
     const { auth } = this.props;
     const { loading, redirect, isadmin } = auth;
     return (
@@ -60,7 +60,7 @@ class Signup extends Component {
                 className="signLabel"
                 placeholder="John"
                 required="required"
-                value={signupDetatils.firstName}
+                value={signupDetails.firstName}
                 onChange={this.handleChange}
               />
               <Input
@@ -72,7 +72,7 @@ class Signup extends Component {
                 className="signLabel"
                 placeholder="Snow"
                 required="required"
-                value={signupDetatils.lastName}
+                value={signupDetails.lastName}
                 onChange={this.handleChange}
               />
               <Input
@@ -84,7 +84,7 @@ class Signup extends Component {
                 className="signLabel"
                 placeholder="Snow"
                 required="required"
-                value={signupDetatils.otherName}
+                value={signupDetails.otherName}
                 onChange={this.handleChange}
               />
               <Input
@@ -95,7 +95,7 @@ class Signup extends Component {
                 className="signLabel"
                 placeholder="amaechio@gmail.com"
                 required="required"
-                value={signupDetatils.email}
+                value={signupDetails.email}
                 onChange={this.handleChange}
               />
               <Input
@@ -106,7 +106,7 @@ class Signup extends Component {
                 className="signLabel"
                 placeholder="0811111101"
                 required="required"
-                value={signupDetatils.phoneNumber}
+                value={signupDetails.phoneNumber}
                 onChange={this.handleChange}
               />
               <Input
@@ -116,7 +116,7 @@ class Signup extends Component {
                 className="signLabel"
                 placeholder="Password"
                 required="required"
-                value={signupDetatils.password}
+                value={signupDetails.password}
                 onChange={this.handleChange}
               />
               <Button

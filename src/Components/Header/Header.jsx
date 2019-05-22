@@ -13,21 +13,15 @@ const Header = () => {
           <Link to="/" className="navbar-logo">
             <img src={AppLogo} alt="App logo" />
           </Link>
-          <Button value="menu" className="hamburger-menu">
+          {/* <Button value="menu" className="hamburger-menu">
             <Link to="/HomePage" className="hamburger" />
-          </Button>
+          </Button> */}
           <ul className="navbar-menu">
             <li className="navbar-link">
               <Link to="/login">Login</Link>
             </li>
             <li className="navbar-link">
               <Link to="/signup">Sign Up</Link>
-            </li>
-            <li className="navbar-link">
-              <Link to="view-more-candidate">View Candidatess</Link>
-            </li>
-            <li className="navbar-link">
-              <Link to="/">Logout</Link>
             </li>
           </ul>
         </nav>

@@ -327,10 +327,6 @@
     box-shadow: rgba(31, 53, 78, 0.11) 0 1px;
   }
   
-  .hamburger-menu {
-    display: none;
-  }
-  
   .navbar {
     display: flex;
   }
@@ -813,18 +809,19 @@
   /* For smartphones (<768px) */
   @media screen and (max-width: 768px) {
     .navbar-menu {
-      flex-direction: column;
-      position: absolute;
-      max-height: 0;
-      top: 73px;
-      left: 0;
-      right: 0;
-      padding: 0;
-      width: 100%;
-      background: #0facf3;
-      overflow: hidden;
-      transition: all 250ms ease-in;
-      z-index: 1000;
+      display: flex;
+      margin-left: auto;
+      padding: 0 40px;
+    }
+    
+    .navbar-link {
+      display: inline;
+    }
+    
+    .navbar-link a {
+      position: relative;
+      display: inline-block;
+      color: #0facf3;
     }
     .btn-primary3 {
       margin: 30px;
@@ -838,78 +835,14 @@
     .text-party {
       margin-top: -5px
     }
-    .navbar-menu.menu-open {
-      max-height: 380px;
-      width: 50%;
-    }
     hr {
         display: none;
     }
-  
-    .navbar-link a {
-      color: #fffffa;
-      padding: 20px;
-    }
+
   
     .active a {
       color: #0facf3;
       background: #fffffa;
-    }
-  
-    .hamburger-menu {
-      position: absolute;
-      padding: 37px;
-      right: 0;
-      background: transparent;
-      display: block;
-    }
-  
-    .hamburger-menu.menu-open > .hamburger {
-      background: transparent;
-    }
-  
-    .hamburger-menu.menu-open > .hamburger::after,
-    .hamburger-menu.menu-open > .hamburger::before {
-      top: 0;
-      width: 30px;
-    }
-  
-    .hamburger-menu.menu-open > .hamburger::after {
-      transform: rotate(-45deg);
-    }
-  
-    .hamburger-menu.menu-open > .hamburger::before {
-      transform: rotate(45deg);
-    }
-  
-    .hamburger {
-      top: 36px;
-      height: 2px;
-      background: #0facf3;
-      display: block;
-      position: absolute;
-      width: 30px;
-      right: 20px;
-    }
-  
-    .hamburger::before {
-      top: 7px;
-    }
-  
-    .hamburger::after {
-      bottom: 7px;
-    }
-  
-    .hamburger::before,
-    .hamburger::after {
-      content: "";
-      height: 2px;
-      background: #0facf3;
-      display: block;
-      position: absolute;
-      width: 30px;
-      right: 0px;
-      transition: all 250ms ease-in;
     }
   
     .container {
