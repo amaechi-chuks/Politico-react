@@ -1,6 +1,6 @@
 import React from 'react';
+import Header from '../Components/Header/Header';
 import errorDisplay from '../assets/img/ErrorImage.gif';
-import Header from '../Components/Global/Header';
 
 const notFound = () => {
   return (

@@ -5,7 +5,6 @@ import Notifications from 'react-notify-toast';
 import { HomePage } from './HomePage';
 import Login from './LoginPage/LoginPage';
 import Candidates from './Candidates/Candidates';
-import Layout from './Containers/Home/Layout';
 import Signup from './Signup/Signup';
 import NotFound from './PageNotFound/PageNotFound';
 import UserProfile from './Userprofile/UserProfile';

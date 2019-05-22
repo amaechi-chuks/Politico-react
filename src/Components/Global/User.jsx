@@ -29,9 +29,6 @@ const UserHeader = () => {
             <li className="navbar-link">
               <Link to="./vote.html">Vote</Link>
             </li>
-            <li className="navbar-link">
-              <Link to="/HomePage">Home</Link>
-            </li>
             <li className="navbar-link active">
               <Link to="/profile">Profile</Link>
             </li>

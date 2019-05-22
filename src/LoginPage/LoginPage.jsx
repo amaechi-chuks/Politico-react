@@ -81,7 +81,7 @@ class Login extends Component {
               <div className="margin--top--10 margin--below ">
                 <p className="text--primary1">
                   Dont have an account?
-                  <Link to="/register" className="text--color--grey">
+                  <Link to="/signup" className="text--color--grey">
                     signup
                   </Link>
                 </p>
