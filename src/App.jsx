@@ -4,11 +4,12 @@ import { Provider } from 'react-redux';
 import Notifications from 'react-notify-toast';
 import { HomePage } from './HomePage';
 import Login from './LoginPage/LoginPage';
-import Layout from './Containers/Home/Layout';
+import Candidates from './Candidates/Candidates';
 import Signup from './Signup/Signup';
 import NotFound from './PageNotFound/PageNotFound';
 import UserProfile from './Userprofile/UserProfile';
 import store from './_helpers/store';
+import Footer from './Components/Footer/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/view-more-candidate" component={Candidates} />
             <Route
               path="/user"
               component={UserProfile}
@@ -34,6 +36,7 @@ class App extends Component {
             <Redirect to="notFound" />
           </Switch>
         </Provider>
+        <Footer />
       </React.Fragment>
     );
   }

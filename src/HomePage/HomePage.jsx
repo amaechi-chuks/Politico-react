@@ -13,7 +13,6 @@ export const HomePage = () => {
       <LandingPage />
       <HowItWorks />
       <FeaturedCandidates />
-      <Footer />
     </div>
   );
 };

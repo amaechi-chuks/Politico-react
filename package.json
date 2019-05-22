@@ -18,7 +18,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
-    "coveralls": "jest --coverage && cat coverage/lcov.info | coveralls"
+    "coveralls": "jest --coverage && cat coverage/lcov.info | coveralls",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",

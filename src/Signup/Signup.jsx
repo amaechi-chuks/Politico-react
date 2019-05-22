@@ -8,7 +8,6 @@ import Loader from '../Components/Global/Loader';
 import Button from '../Components/Global/Buttons';
 import authAction from '../_actions/auth.actions';
 import Header from '../Components/Header/Header';
-import Footer from '../Components/Footer/Footer';
 import '../assets/style/global/spinner.css';
 
 class Signup extends Component {
@@ -136,7 +135,6 @@ class Signup extends Component {
             </form>
           </section>
         </main>
-        <Footer />
         {isadmin && redirect && <Redirect to="/admin" />}
         {!isadmin && redirect && <Redirect to="/login" />}
       </React.Fragment>

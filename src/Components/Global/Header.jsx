@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/style/howItWorks.css';
 import AppLogo from '../../assets/img/AppLogo.png';
+import Button from './Buttons';
 
 const Header = () => {
   return (
@@ -12,12 +13,12 @@ const Header = () => {
           <Link to="/" className="navbar-logo">
             <img src={AppLogo} alt="App logo" />
           </Link>
+          <Button value="menu" className="hamburger-menu">
+            <Link to="/HomePage" className="hamburger" />
+          </Button>
           <ul className="navbar-menu">
             <li className="navbar-link">
-              <Link to="/login">Login</Link>
-            </li>
-            <li className="navbar-link">
-              <Link to="/signup">Sign Up</Link>
+              <Link to="/">Home</Link>
             </li>
           </ul>
         </nav>
