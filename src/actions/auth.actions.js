@@ -1,7 +1,8 @@
 import { notify } from 'react-notify-toast';
-import actions from '../_constants/user.constants';
-import authServices from '../_services/auth.service';
-import handleErrorMessage from '../_helpers/handleErrorMessage.js';
+import actions from '../constants/user.constants';
+import authServices from '../services/auth.service';
+import { setToken, removeToken } from '../ultility/authServices';
+import handleErrorMessage from '../helpers/handleErrorMessage.js';
 
 const contentLoading = () => {
   return {
@@ -15,7 +16,6 @@ const loginSuccess = token => {
     token,
   };
 };
-
 const loginSuccessAdmin = token => {
   return {
     type: actions.LOGIN_SUCCESS_ADMIN,
@@ -28,22 +28,10 @@ const loginFailure = () => {
     type: actions.LOGIN_FAILURE,
   };
 };
-const signupSuccess = token => {
-  return {
-    type: actions.SIGNUP_SUCCESS,
-    token,
-  };
-};
 
 const signupFailure = () => {
   return {
     type: actions.SIGNUP_FAILURE,
-  };
-};
-
-const logoutUser = () => {
-  return {
-    type: actions.LOGOUT,
   };
 };
 
@@ -67,31 +55,28 @@ const login = userDetails => {
     }
   };
 };
-const signup = userDetails => {
-  return async dispatch => {
-    dispatch(contentLoading());
-    const res = await authServices.auth('signup', userDetails);
-    if (res.status >= 400) {
-      dispatch(signupFailure());
-      notify.show(handleErrorMessage(res.error), 'error');
-    }
 
-    if (res.status === 201) {
-      localStorage.setItem('token', res.data[0].token);
-      localStorage.setItem('user', JSON.stringify(res.data[0].user));
-      if (res.data[0].user.isadmin) {
-        dispatch(signupSuccess(res.data[0].token));
-      } else {
-        dispatch(signupSuccess(res.data[0].token));
-      }
+export const signup = userDetails => {
+  return async dispatch => {
+    if (!navigator.onLine) {
+      return notify.show('Please check your internet connection', 'error');
+    }
+    dispatch(contentLoading());
+    try {
+      const { data } = await authServices.auth('signup', userDetails);
+      const { user } = data;
+      const { token } = user;
+      return setToken(token);
+    } catch (ex) {
+      return handleErrorMessage(ex);
+    } finally {
+      dispatch(signupFailure());
     }
   };
 };
-const logout = () => {
-  return dispatch => {
-    localStorage.clear();
-    dispatch(logoutUser());
-  };
+export const logout = () => {
+  removeToken();
+  window.location = '/login';
 };
 
 const authAction = { login, logout, signup };

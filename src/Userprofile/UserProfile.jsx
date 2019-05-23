@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
 import UserHeader from '../Components/Global/User';
 import avatar from '../assets/img/avatar.png';
-import upload from '../_services/upload';
+import upload from '../services/upload';
 import Loader from '../Components/Global/Loader';
 import ProfileTable from './ProfileTable';
 import Button from '../Components/Global/Buttons';

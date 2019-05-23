@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Input from '../Components/Global/Inputs';
 import Loader from '../Components/Global/Loader';
 import Button from '../Components/Global/Buttons';
-import authAction from '../_actions/auth.actions';
+import authAction from '../actions/auth.actions';
 import Header from '../Components/Header/Header';
 import '../assets/style/global/spinner.css';
 

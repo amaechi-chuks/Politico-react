@@ -1,9 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/no-this-in-sfc */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NavList from './NavList';
 import '../../assets/style/howItWorks.css';
 import AppLogo from '../../assets/img/AppLogo.png';
 
@@ -16,9 +12,7 @@ const UserHeader = () => {
           <Link to="/" className="navbar-logo">
             <img src={AppLogo} alt="App logo" />
           </Link>
-          <button type="submit" className="hamburger-menu">
-            <a className="hamburger" />
-          </button>
+          <button type="submit" className="hamburger-menu" />
           <ul className="navbar-menu">
             <li className="navbar-link">
               <Link to="/">Home</Link>
