@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Notifications, { notify } from 'react-notify-toast';
