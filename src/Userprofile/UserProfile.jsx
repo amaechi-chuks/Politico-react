@@ -5,7 +5,6 @@ import UserHeader from '../Components/Global/User';
 import avatar from '../assets/img/avatar.png';
 import upload from '../services/upload';
 import Loader from '../Components/Global/Loader';
-import ProfileTable from './ProfileTable';
 import Button from '../Components/Global/Buttons';
 
 class UserProfile extends Component {
@@ -80,7 +79,6 @@ class UserProfile extends Component {
                 </form>
               </div>
             </div>
-            <ProfileTable />
           </div>
         </section>
       </div>
