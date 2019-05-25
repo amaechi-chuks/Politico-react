@@ -1,27 +1,33 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../assets/style/howItWorks.css';
+import './nav.css';
 import AppLogo from '../../assets/img/AppLogo.png';
 
 const Header = () => {
   return (
-    <div>
-      <div className="modal-toggle" />
-      <header className="sticky-top">
-        <nav className="navbar">
-          <Link to="/" className="navbar-logo">
+    <div className="nav">
+      <input type="checkbox" id="nav-check" />
+      <div className="nav-header">
+        <div className="nav-title">
+          <Link to="/">
             <img src={AppLogo} alt="App logo" />
           </Link>
-          <ul className="navbar-menu">
-            <li className="navbar-link">
-              <Link to="/login">Login</Link>
-            </li>
-            <li className="navbar-link">
-              <Link to="/signup">Sign Up</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+        </div>
+      </div>
+      <div className="nav-btn">
+        <label for="nav-check">
+          <span />
+          <span />
+          <span />
+        </label>
+      </div>
+      <div className="nav-links">
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign Up</Link>
+      </div>
     </div>
   );
 };

@@ -1,40 +1,30 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../assets/style/howItWorks.css';
+import '../Header/nav.css';
 import AppLogo from '../../assets/img/AppLogo.png';
 
 const UserHeader = () => {
   return (
-    <div>
-      <div className="modal-toggle" />
-      <header className="sticky-top">
-        <nav className="navbar">
-          <Link to="/" className="navbar-logo">
+    <div className="nav">
+      <input type="checkbox" id="nav-check" />
+      <div className="nav-header">
+        <div className="nav-title">
+          <Link to="/">
             <img src={AppLogo} alt="App logo" />
           </Link>
-          <button type="submit" className="hamburger-menu" />
-          <ul className="navbar-menu">
-            <li className="navbar-link">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="navbar-link">
-              <Link to="/apply">Apply to contest</Link>
-            </li>
-            <li className="navbar-link">
-              <Link to="./vote.html">Vote</Link>
-            </li>
-            <li className="navbar-link active">
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li className="navbar-link">
-              <Link to="/view-more-candidate">View Candidates</Link>
-            </li>
-            <li className="navbar-link">
-              <Link to="./index.html">Log Out</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+        </div>
+      </div>
+      <div className="nav-btn">
+        <label for="nav-check">
+          <span />
+        </label>
+      </div>
+      <div className="nav-links">
+        <Link to="/logout">Log Out</Link>
+      </div>
     </div>
   );
 };
