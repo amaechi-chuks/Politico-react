@@ -1,0 +1,76 @@
+.admin-page {
+  width: 95%;
+  margin: 0 auto;
+  border-bottom: 1px solid #0facf3;
+}
+button {
+  width: 100%;
+  background: none;
+}
+.admin-tab {
+  width: 100%;
+  height: 100%;
+  margin-top: 36px;
+}
+
+.admin-tab-items-left {
+  height: 100%;
+  display: flex;
+  justify-self: left;
+}
+.text:visited {
+  color: #ffffff;
+}
+.admin-btn {
+  height: 70%;
+  cursor: pointer;
+  border: none;
+  font-size: 1.2rem;
+  margin: 5px;
+  outline: none;
+  margin: auto 5px;
+}
+
+.admin-btn-active {
+  height: 70%;
+  cursor: pointer;
+  border: none;
+  font-size: 1.2rem;
+  padding: 15px;
+  outline: none;
+  background-color: #0facf3;
+  color: #ffffff;
+
+  margin: auto 5px;
+}
+.admin-btn button {
+  background: transparent;
+  height: 70%;
+  cursor: pointer;
+  border: none;
+  font-size: 1.2rem;
+  margin: 5px;
+  outline: none;
+}
+.admin-btn button .text {
+  font-size: 25px;
+}
+.admin-btn button .text:active {
+  color: #ffffff;
+}
+@media screen and (max-width: 480px) {
+  .text {
+    font-size: 13px;
+  }
+  .admin-btn-active {
+    height: 70%;
+    cursor: pointer;
+    border: none;
+    font-size: 10px;
+    padding: 15px;
+    outline: none;
+    background-color: #0facf3;
+    color: #ffffff;
+    margin: auto 5px;
+  }
+}

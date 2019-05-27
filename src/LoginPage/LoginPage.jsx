@@ -14,7 +14,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginDetatils: {
+      loginDetails: {
         email: '',
         password: '',
       },
@@ -22,19 +22,19 @@ class Login extends Component {
   }
 
   handleChange = ({ target }) => {
-    const { loginDetatils } = this.state;
-    loginDetatils[target.id] = target.value;
-    this.setState({ loginDetatils });
+    const { loginDetails } = this.state;
+    loginDetails[target.id] = target.value;
+    this.setState({ loginDetails });
   };
 
   handleClick = () => {
-    const { loginDetatils } = this.state;
+    const { loginDetails } = this.state;
     const { login } = this.props;
-    login(loginDetatils);
+    login(loginDetails);
   };
 
   render() {
-    const { loginDetatils } = this.state;
+    const { loginDetails } = this.state;
     const { auth } = this.props;
     const { loading, redirect, isadmin } = auth;
 
@@ -55,7 +55,7 @@ class Login extends Component {
                 className="signLabel"
                 placeholder="johndeo@gmail.com"
                 required="required"
-                value={loginDetatils.email}
+                value={loginDetails.email}
                 onChange={this.handleChange}
               />
               <Input
@@ -65,7 +65,7 @@ class Login extends Component {
                 className="signLabel"
                 placeholder="Password"
                 required="required"
-                value={loginDetatils.password}
+                value={loginDetails.password}
                 onChange={this.handleChange}
               />
               <div className="forgot--reset">
@@ -90,7 +90,7 @@ class Login extends Component {
           </section>
         </main>
         {isadmin && redirect && <Redirect to="/admin" />}
-        {!isadmin && redirect && <Redirect to="/user" />}
+        {!isadmin && redirect && <Redirect to="/user-profile" />}
       </React.Fragment>
     );
   }
@@ -100,11 +100,12 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
   auth: PropTypes.shape().isRequired,
 };
+export default Login;
 
-const { login } = authAction;
+// const { login } = authAction;
 
-const mapStateToProps = ({ auth }) => ({ auth });
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+// const mapStateToProps = ({ auth }) => ({ auth });
+// export default connect(
+//   mapStateToProps,
+//   { login }
+// )(Login);

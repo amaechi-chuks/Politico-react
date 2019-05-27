@@ -3,13 +3,13 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Notifications from 'react-notify-toast';
 import { HomePage } from './HomePage';
-import Login from './LoginPage/LoginPage';
+import Login from './Containers/login.container';
 import Logout from './Logout/Logout';
 import Candidates from './Candidates/Candidates';
-import Signup from './Signup/Signup';
+import Signup from './Containers/signup.containers';
 import NotFound from './PageNotFound/PageNotFound';
-import UserProfile from './Userprofile/UserProfile';
-import store from './helpers/store';
+import UserProfile from './actions/profile.containers';
+import store from './store/store';
 import Footer from './Components/Footer/Footer';
 
 class App extends Component {
@@ -25,11 +25,11 @@ class App extends Component {
           <Notifications />
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/view-more-candidate" component={Candidates} />
-            <Route path="/user" component={UserProfile} />
+            <Route path="/user-profile" component={UserProfile} />
             <Route path="/notFound" component={NotFound} />
             <Redirect to="notFound" />
           </Switch>

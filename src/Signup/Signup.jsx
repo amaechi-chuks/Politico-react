@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Input from '../Components/Global/Inputs';
 import Loader from '../Components/Global/Loader';
 import Button from '../Components/Global/Buttons';
-import authAction from '../actions/auth.actions';
 import Header from '../Components/Header/Header';
 import '../assets/style/global/spinner.css';
 
@@ -41,7 +40,7 @@ class Signup extends Component {
   render() {
     const { signupDetails } = this.state;
     const { auth } = this.props;
-    const { loading, redirect, isadmin } = auth;
+    const { loading, redirect } = auth;
     return (
       <React.Fragment>
         <Notifications />
@@ -136,8 +135,7 @@ class Signup extends Component {
             </form>
           </section>
         </main>
-        {isadmin && redirect && <Redirect to="/admin" />}
-        {!isadmin && redirect && <Redirect to="/login" />}
+        {redirect && <Redirect to="/login" />}
       </React.Fragment>
     );
   }
@@ -147,11 +145,4 @@ Signup.propTypes = {
   signup: PropTypes.func.isRequired,
   auth: PropTypes.shape().isRequired,
 };
-
-const { signup } = authAction;
-
-const mapStateToProps = ({ auth }) => ({ auth });
-export default connect(
-  mapStateToProps,
-  { signup }
-)(Signup);
+export default Signup;
