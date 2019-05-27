@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Notifications, { notify } from 'react-notify-toast';
 import UserHeader from '../Components/Global/User';
 import PartyList from '../Party/PartyList/PartyList';
+import OfficeList from '../Office/OfficeList/OfficeList';
 import UserTab from '../UserTab/UserTab';
 import avatar from '../assets/img/avatar.png';
 import upload from '../services/upload';
@@ -22,8 +23,9 @@ class UserProfile extends Component {
   }
 
   componentDidMount = () => {
-    const { fetchAllParty } = this.props;
+    const { fetchAllParty, fetchAllOffice } = this.props;
     fetchAllParty();
+    fetchAllOffice();
   };
 
   handleChange = async e => {
@@ -40,7 +42,9 @@ class UserProfile extends Component {
     const { imageUrl } = this.state;
     const formData = new FormData();
     formData.append('passporturl', imageUrl);
-    await upload.uploadPic(formData);
+    const res = await upload.uploadPic(formData);
+    localStorage.setItem('user', JSON.stringify(res.data[0]));
+    this.setState({ loading: true });
   };
 
   changeTab = tab => {
@@ -49,10 +53,10 @@ class UserProfile extends Component {
 
   render() {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user, 'profile');
     const { loading, currentTab } = this.state;
-    const { partyList } = this.props;
+    const { partyList, officeList } = this.props;
     const { partyList: data } = partyList;
+    const { officeList: officeData } = officeList;
     return (
       <React.Fragment>
         <div>
@@ -102,9 +106,7 @@ class UserProfile extends Component {
                     <PartyList partyList={data} />
                   ) : null}
                   {currentTab === 'office-section' ? (
-                    <p classNmae="user-tab-section">
-                      Office section, Work in progress
-                    </p>
+                    <OfficeList officeList={officeData} />
                   ) : null}
                   {currentTab === 'apply-section' ? (
                     <p classNmae="user-tab-section">
@@ -137,10 +139,13 @@ class UserProfile extends Component {
 }
 UserProfile.defaultProps = {
   partyList: {},
+  officeList: {},
 };
 UserProfile.propTypes = {
   fetchAllParty: PropTypes.func.isRequired,
+  fetchAllOffice: PropTypes.func.isRequired,
   partyList: PropTypes.shape(),
+  officeList: PropTypes.shape(),
 };
 
 export default UserProfile;
