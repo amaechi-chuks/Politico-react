@@ -63,3 +63,6 @@ typings/
 coverage/
 /coverage.data
 /coverage/
+public/images/
+# Bundle
+public/bundle.js
