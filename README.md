@@ -2,10 +2,10 @@
 
 Politico is a platform that enables citizens give their mandate to politicians running different government offices while building trust in the process through transparency.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b1a4601c-a821-49f2-ae41-e1df1ba982a6/deploy-status)](https://app.netlify.com/sites/keen-murdock-6b52d2/deploys)
 [![CircleCI](https://circleci.com/gh/amaechi-chuks/Politico-react.svg?style=svg)](https://circleci.com/gh/amaechi-chuks/Politico-react)
 [![Build Status](https://travis-ci.org/amaechi-chuks/Politico-react.svg?branch=develop)](https://travis-ci.org/amaechi-chuks/Politico-react)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8111789052b3f577763d/maintainability)](https://codeclimate.com/github/amaechi-chuks/Politico-react/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8111789052b3f577763d/test_coverage)](https://codeclimate.com/github/amaechi-chuks/Politico-react/test_coverage)
 [![Coverage Status](https://coveralls.io/repos/github/amaechi-chuks/Politico-react/badge.svg?branch=develop)](https://coveralls.io/github/amaechi-chuks/Politico-react?branch=develop)
 
 ## Table of Contents
