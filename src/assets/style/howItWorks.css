@@ -324,44 +324,6 @@ header {
   box-shadow: rgba(31, 53, 78, 0.11) 0 1px;
 }
 
-/* .navbar {
-    display: flex;
-  }
-  
-  .navbar-logo {
-    font-weight: 600;
-    font-size: 2em;
-    padding: 15px 40px;
-    text-decoration: none;
-    color: #0facf3;
-    letter-spacing: 0.07em;
-  }
-  
-  .navbar-menu {
-    display: flex;
-    margin-left: auto;
-    padding: 0 40px;
-  }
-  
-  .navbar-link {
-    display: inline;
-  }
-  
-  .navbar-link a {
-    display: block;
-    padding: 26px 15px;
-    color: #0facf3;
-  }
-  
-  hr {
-    border-bottom: 3px solid #0facf3;
-  } */
-
-/* .navbar-link a:hover {
-    color: #3c4859;
-  } */
-
-/* Main Section */
 main {
   display: flex;
   flex-direction: column;
@@ -830,9 +792,12 @@ tr > td:last-child {
   }
 
   .container {
-    padding: 40px 20px;
+    margin-top: 30px;
   }
-
+  .profile {
+    display: grid;
+    grid-template-columns: auto;
+  }
   .form-container {
     padding: 40px 0 65px;
   }
@@ -866,10 +831,10 @@ tr > td:last-child {
 
   .hero-cta,
   .steps,
-  .featured-cards,
-  .profile {
+  .featured-cards {
     flex-direction: column;
   }
+
   section {
     padding: 40px 20px;
   }
@@ -894,6 +859,7 @@ tr > td:last-child {
   }
 
   .profile-card {
+    height: auto;
     width: 100%;
   }
 

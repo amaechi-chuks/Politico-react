@@ -66,6 +66,10 @@ export const signup = userDetails => {
     dispatch(contentLoading());
     try {
       const res = await authServices.auth('signup', userDetails);
+      if (res.status >= 400) {
+        dispatch(signupFailure());
+        notify.show(handleErrorMessage(res.error), 'error');
+      }
       localStorage.setItem('token', res.data[0].token);
       localStorage.setItem('user', JSON.stringify(res.data[0].user));
     } catch (ex) {
