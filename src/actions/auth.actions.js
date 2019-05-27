@@ -1,7 +1,7 @@
 import { notify } from 'react-notify-toast';
 import actions from '../constants/user.constants';
 import authServices from '../services/http.service';
-import { setToken, removeToken } from '../services/auth.services';
+import { setToken, removeToken, decodeToken } from '../services/auth.services';
 import handleErrorMessage from '../helpers/handleErrorMessage.js';
 
 const contentLoading = () => {
@@ -61,16 +61,15 @@ const login = userDetails => {
 export const signup = userDetails => {
   return async dispatch => {
     if (!navigator.onLine) {
-      return notify.show('Please check your internet connection', 'error');
+      notify.show('Please check your internet connection', 'error');
     }
     dispatch(contentLoading());
     try {
-      const data = await authServices.auth('signup', userDetails);
-      const { user } = data;
-      const { token } = user;
-      return setToken(token);
+      const res = await authServices.auth('signup', userDetails);
+      localStorage.setItem('token', res.data[0].token);
+      localStorage.setItem('user', JSON.stringify(res.data[0].user));
     } catch (ex) {
-      return handleErrorMessage(ex);
+      handleErrorMessage(ex);
     } finally {
       dispatch(signupFailure());
     }
