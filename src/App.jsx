@@ -8,7 +8,7 @@ import Logout from './Logout/Logout';
 import Candidates from './Candidates/Candidates';
 import Signup from './Containers/signup.containers';
 import NotFound from './PageNotFound/PageNotFound';
-import UserProfile from './actions/profile.containers';
+import UserProfile from './Containers/profile.containers';
 import store from './store/store';
 import Footer from './Components/Footer/Footer';
 
