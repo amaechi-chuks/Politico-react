@@ -49,6 +49,7 @@ class UserProfile extends Component {
 
   render() {
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user, 'profile');
     const { loading, currentTab } = this.state;
     const { partyList } = this.props;
     const { partyList: data } = partyList;
