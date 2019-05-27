@@ -644,9 +644,9 @@ footer {
 /* Profile Card */
 .profile,
 .dashboard {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-auto-columns: 100%;
+  grid-template-columns: 25rem auto;
 }
 
 .profile-card {
@@ -657,6 +657,7 @@ footer {
   align-items: center;
   padding: 20px;
   margin-top: 20px;
+  height: 66%;
 }
 
 .profile-image {
@@ -807,21 +808,6 @@ tr > td:last-child {
 
 /* For smartphones (<768px) */
 @media screen and (max-width: 768px) {
-  /* .navbar-menu {
-      display: flex;
-      margin-left: auto;
-      padding: 0 40px;
-    }
-    
-    .navbar-link {
-      display: inline;
-    }
-    
-    .navbar-link a {
-      position: relative;
-      display: inline-block;
-      color: #0facf3;
-    } */
   .btn-primary3 {
     margin: 30px;
   }
@@ -884,20 +870,12 @@ tr > td:last-child {
   .profile {
     flex-direction: column;
   }
-
   section {
     padding: 40px 20px;
   }
-
-  /* .navbar-logo {
-      font-size: 1.5em;
-      padding: 20px;
-    } */
-
   .column.step {
     padding: 20px;
   }
-
   .featured {
     margin-top: -40px;
     padding-top: 15px;
