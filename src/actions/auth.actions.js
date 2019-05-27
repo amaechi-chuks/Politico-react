@@ -1,7 +1,7 @@
 import { notify } from 'react-notify-toast';
 import actions from '../constants/user.constants';
-import authServices from '../services/auth.service';
-import { setToken, removeToken } from '../ultility/authServices';
+import authServices from '../services/http.service';
+import { setToken, removeToken } from '../services/auth.services';
 import handleErrorMessage from '../helpers/handleErrorMessage.js';
 
 const contentLoading = () => {
@@ -36,6 +36,9 @@ const signupFailure = () => {
 };
 
 const login = userDetails => {
+  if (!navigator.onLine) {
+    return notify.show('Please check your internet connection', 'error');
+  }
   return async dispatch => {
     dispatch(contentLoading());
     const res = await authServices.auth('login', userDetails);
@@ -43,7 +46,6 @@ const login = userDetails => {
       dispatch(loginFailure());
       notify.show(handleErrorMessage(res.error), 'error');
     }
-
     if (res.status === 200) {
       localStorage.setItem('token', res.data[0].token);
       localStorage.setItem('user', JSON.stringify(res.data[0].user));
@@ -63,7 +65,7 @@ export const signup = userDetails => {
     }
     dispatch(contentLoading());
     try {
-      const { data } = await authServices.auth('signup', userDetails);
+      const data = await authServices.auth('signup', userDetails);
       const { user } = data;
       const { token } = user;
       return setToken(token);
