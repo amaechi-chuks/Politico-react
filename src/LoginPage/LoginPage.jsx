@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Loader from '../Components/Global/Loader';
 import Button from '../Components/Global/Buttons';
 import Input from '../Components/Global/Inputs';
-import authAction from '../actions/auth.actions';
 import Header from '../Components/Header/Header';
 import '../assets/style/global/spinner.css';
 
@@ -27,10 +26,11 @@ class Login extends Component {
     this.setState({ loginDetails });
   };
 
-  handleClick = () => {
+  handleClick = async e => {
+    e.preventDefault();
     const { loginDetails } = this.state;
     const { login } = this.props;
-    login(loginDetails);
+    await login(loginDetails);
   };
 
   render() {
@@ -101,11 +101,3 @@ Login.propTypes = {
   auth: PropTypes.shape().isRequired,
 };
 export default Login;
-
-// const { login } = authAction;
-
-// const mapStateToProps = ({ auth }) => ({ auth });
-// export default connect(
-//   mapStateToProps,
-//   { login }
-// )(Login);

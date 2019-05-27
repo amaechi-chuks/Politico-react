@@ -30,7 +30,22 @@ const fetchItem = (type = 'parties', data) => {
     .then(res => res)
     .catch(err => err);
 };
+const postItem = (type = 'interest', data) => {
+  return window
+    .fetch(`${url}/${type}/`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
 export default {
   auth,
   fetchItem,
+  postItem,
 };
