@@ -31,10 +31,11 @@ class Signup extends Component {
     this.setState({ signupDetails });
   };
 
-  handleClick = () => {
+  handleClick = async e => {
+    e.preventDefault();
     const { signupDetails } = this.state;
     const { signup } = this.props;
-    signup(signupDetails);
+    await signup(signupDetails);
   };
 
   render() {

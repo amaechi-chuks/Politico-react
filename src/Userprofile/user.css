@@ -4,3 +4,8 @@
 .admin-content p {
   margin: 0 auto;
 }
+@media screen and (max-width: 600px) {
+  .user-profile-tab-section {
+    grid-auto-columns: auto;
+  }
+}

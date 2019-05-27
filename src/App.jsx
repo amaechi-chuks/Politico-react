@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Notifications from 'react-notify-toast';
 import { HomePage } from './HomePage';
@@ -23,16 +23,18 @@ class App extends Component {
       <React.Fragment>
         <Provider store={store}>
           <Notifications />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/view-more-candidate" component={Candidates} />
-            <Route path="/user-profile" component={UserProfile} />
-            <Route path="/notFound" component={NotFound} />
-            <Redirect to="notFound" />
-          </Switch>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/logout" component={Logout} />
+              <Route path="/view-more-candidate" component={Candidates} />
+              <Route path="/user-profile" component={UserProfile} />
+              <Route path="/notFound" component={NotFound} />
+              <Redirect to="notFound" />
+            </Switch>
+          </BrowserRouter>
         </Provider>
         <Footer />
       </React.Fragment>

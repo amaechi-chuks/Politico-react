@@ -74,6 +74,11 @@ p {
     font-weight: bold;
   }
 
+  .initials {
+    margin: 0;
+    padding: 50px 0;
+  }
+
   .profile_image {
     width: 124px;
     height: 124px;
@@ -96,7 +101,6 @@ p {
     justify-content: center;
     align-items: center;
     width: 85%;
-    margin-left: 35px;
     padding: 10px 20px;
     overflow: auto;
     border: solid 1px #959595;
@@ -121,16 +125,18 @@ p {
     margin-bottom: 15px;
   }
   .main-grid {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
   p:first-child {
-    padding-top: 0;
+    /* padding-top: 0; */
     font-size: 17px;
   }
-  .main-title p:first-child {
+
+  /* .main-title p:first-child {
     margin-top: -10px;
     font-weight: bold;
-  }
+  } */
   .profile_image {
     width: 124px;
     height: 124px;
@@ -152,4 +158,6 @@ p {
   .text {
     font-size: 11px;
   }
+}
+@media screen and (max-width: 360px) {
 }

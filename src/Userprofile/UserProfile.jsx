@@ -5,6 +5,7 @@ import Notifications, { notify } from 'react-notify-toast';
 import UserHeader from '../Components/Global/User';
 import PartyList from '../Party/PartyList/PartyList';
 import OfficeList from '../Office/OfficeList/OfficeList';
+import InterestForm from '../Interest/InterestForm/InterestForm';
 import UserTab from '../UserTab/UserTab';
 import avatar from '../assets/img/avatar.png';
 import upload from '../services/upload';
@@ -54,9 +55,10 @@ class UserProfile extends Component {
   render() {
     const user = JSON.parse(localStorage.getItem('user'));
     const { loading, currentTab } = this.state;
-    const { partyList, officeList } = this.props;
+    const { partyList, officeList, interestList, declareInterest } = this.props;
     const { partyList: data } = partyList;
     const { officeList: officeData } = officeList;
+    const { interestList: interestData } = interestList;
     return (
       <React.Fragment>
         <div>
@@ -110,7 +112,12 @@ class UserProfile extends Component {
                   ) : null}
                   {currentTab === 'apply-section' ? (
                     <p classNmae="user-tab-section">
-                      Interest section, Work in progress
+                      <InterestForm
+                        interestList={interestData}
+                        declareInterest={declareInterest}
+                        partyList={partyList}
+                        officeList={officeList}
+                      />
                     </p>
                   ) : null}
                   {currentTab === 'candidates-section' ? (
@@ -140,12 +147,15 @@ class UserProfile extends Component {
 UserProfile.defaultProps = {
   partyList: {},
   officeList: {},
+  interestList: {},
 };
 UserProfile.propTypes = {
   fetchAllParty: PropTypes.func.isRequired,
   fetchAllOffice: PropTypes.func.isRequired,
+  declareInterest: PropTypes.func.isRequired,
   partyList: PropTypes.shape(),
   officeList: PropTypes.shape(),
+  interestList: PropTypes.shape(),
 };
 
 export default UserProfile;
