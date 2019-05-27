@@ -7,8 +7,8 @@ export const getToken = () => localStorage.getItem(tokenKey);
 export const decodeToken = () => {
   try {
     const token = getToken();
-    const { userObj } = jwtDecode(token);
-    return userObj;
+    const { userDetails } = jwtDecode(token);
+    return userDetails;
   } catch (ex) {
     return null;
   }
