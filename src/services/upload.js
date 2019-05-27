@@ -13,10 +13,6 @@ const uploadPic = data => {
       body: data,
     })
     .then(res => res.json())
-    .then(res => {
-      localStorage.setItem('user', JSON.stringify(res.data[0]));
-    })
-    .then(res => res.json())
     .then(res => res)
     .catch(err => err);
 };
