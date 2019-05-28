@@ -38,25 +38,25 @@ const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 const store = mockStore({});
 
-const AdminPageCont = (
+const ProfilePageCont = (
   <Provider store={store}>
     <UserProfile {...props} />
   </Provider>
 );
 
-describe('AdminPage component', () => {
+describe('ProifilePage component', () => {
   it('should match snapshot', () => {
-    const wrapper = shallow(AdminPageCont);
+    const wrapper = shallow(ProfilePageCont);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render Admin page without crashing', () => {
-    localStorage.setItem('user', '{ "id": 2, "passporturl": "url" }');
-    const wrapper = shallow(<UserProfile {...props} />);
-    expect(wrapper.find('div'));
-  });
+  // it('should render userPrfile page without crashing', () => {
+  //   localStorage.setItem('user', '{ "id": 2, "passporturl": "url" }');
+  //   const wrapper = shallow(<UserProfile {...props} />);
+  //   expect(wrapper.find('div'));
+  // });
 
-  it('should render ReviewerRequest without crashing', () => {
+  it('should render party without crashing', () => {
     const wrapper = shallow(<PartyList {...party} />);
     expect(wrapper.find('div'));
   });
@@ -66,8 +66,8 @@ describe('AdminPage component', () => {
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<PROFILE CARD />', () => {
+  it('should render profile card', () => {
     const wrapper = shallow(
       <ReviewerRequestCard initials="" logoUrl="" hqAddress="" name="" />
     );
@@ -75,14 +75,14 @@ describe('<REQUEST CARD />', () => {
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<CANDIDATES LIST CARD />', () => {
+  it('should render candidates list card', () => {
     const wrapper = shallow(<CandidateList />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<CANDIDATES CARD />', () => {
+  it('should render candidates card', () => {
     const wrapper = shallow(<Candidates />);
     expect(wrapper.find('div'));
   });
@@ -93,56 +93,56 @@ describe('<REQUEST CARD />', () => {
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<FOOTER />', () => {
+  it('should render footer', () => {
     const wrapper = shallow(<Footer />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<BUTTON />', () => {
+  it('should render button', () => {
     const wrapper = shallow(<Button />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<FORM INPUT />', () => {
+  it('should render form input', () => {
     const wrapper = shallow(<Input />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<LOADER />', () => {
+  it('should render loader', () => {
     const wrapper = shallow(<Loader />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<NAVLIST/>', () => {
+  it('should render nvalist section', () => {
     const wrapper = shallow(<NavList />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<USER SECTION />', () => {
+  it('should render user section', () => {
     const wrapper = shallow(<User />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<HEADER SECTION  />', () => {
+  it('should render header section', () => {
     const wrapper = shallow(<Header />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<HOWITWORKS SECTION />', () => {
+  it('should render howitworks section', () => {
     const wrapper = shallow(<HowItWorks />);
     expect(wrapper.find('div'));
   });
 });
-describe('<REQUEST CARD />', () => {
-  it('should render request card', () => {
+describe('<LANDINGPAGE SECTION />', () => {
+  it('should render landing page section', () => {
     const wrapper = shallow(<LandingPage />);
     expect(wrapper.find('div'));
   });

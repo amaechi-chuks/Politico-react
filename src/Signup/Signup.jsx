@@ -136,7 +136,7 @@ class Signup extends Component {
             </form>
           </section>
         </main>
-        {redirect && <Redirect to="/login" />}
+        {redirect && <Redirect to="/user-profile" />}
       </React.Fragment>
     );
   }

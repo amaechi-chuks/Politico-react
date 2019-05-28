@@ -24,8 +24,9 @@ class InterestForm extends Component {
 
   handleClick = () => {
     const { declareInterest } = this.props;
+    const { interestDetails } = this.state;
     const id = JSON.parse(localStorage.getItem('user')).id;
-    declareInterest(id);
+    declareInterest(id, interestDetails);
   };
 
   render() {
@@ -33,27 +34,35 @@ class InterestForm extends Component {
     const { officeList: allOffice } = officeList;
     const { partyList: allParties } = partyList;
     return (
-      <div className="main-title">
+      <div className="main-title-card">
         <div className="image_title_bio">
-          <div className="form-card">
+          <div className="form-card-card">
             <label htmlFor="issue-type">
               Select Political Party
               <span>*</span>
             </label>
             <select id="party" onChange={this.handleChange}>
-              <option default>-- Select Political Party --</option>
+              <option disabled selected default>
+                -- Select Political Party --
+              </option>
               {allParties.map(party => (
-                <option key={party.id}>{party.name}</option>
+                <option key={party.id} value={party.id}>
+                  {party.name}
+                </option>
               ))}
             </select>
             <label htmlFor="issue-type">
               Select Office Type
               <span>*</span>
             </label>
-            <select onChange={this.handleChange}>
-              <option default>-- Select Office Type --</option>
+            <select id="office" onChange={this.handleChange}>
+              <option disabled selected default>
+                -- Select Office Type --
+              </option>
               {allOffice.map(office => (
-                <option key={office.id}>{office.name}</option>
+                <option key={office.id} value={office.id}>
+                  {office.name}
+                </option>
               ))}
             </select>
             <Button

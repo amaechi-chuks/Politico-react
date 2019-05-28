@@ -23,16 +23,10 @@ const auth = (state = initialState, action) => {
       };
     case actionTypes.LOGIN_SUCCESS:
       return { ...state, loading: false, redirect: true, token: action.token };
-    case actionTypes.SIGNUP_SUCCESS_ADMIN:
-      return {
-        ...state,
-        loading: false,
-        isadmin: true,
-        redirect: true,
-        token: action.token,
-      };
     case actionTypes.SIGNUP_SUCCESS:
       return { ...state, loading: false, redirect: true, token: action.token };
+    case actionTypes.SIGNUP_FAILURE:
+      return { ...state, loading: false };
     case actionTypes.LOGOUT:
       return { ...state, redirect: false, isadmin: false, token: null };
     default:

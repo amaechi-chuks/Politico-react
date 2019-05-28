@@ -37,7 +37,6 @@ class Login extends Component {
     const { loginDetails } = this.state;
     const { auth } = this.props;
     const { loading, redirect, isadmin } = auth;
-
     return (
       <React.Fragment>
         <Notifications />

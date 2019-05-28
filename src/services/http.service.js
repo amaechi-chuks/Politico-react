@@ -1,8 +1,8 @@
 const localUrl = 'http://127.0.0.1:3000/api/v1';
 const herokuUrl = ' https://politico-software.herokuapp.com/api/v1';
-const url = `${localUrl}`;
+const url = `${herokuUrl}`;
 
-const auth = (type = 'login', data) => {
+const auth = (type = 'signup', data) => {
   return window
     .fetch(`${url}/auth/${type}`, {
       method: 'POST',

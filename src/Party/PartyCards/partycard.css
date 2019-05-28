@@ -11,6 +11,20 @@
   border: solid 1px #e4e4e4;
   border-radius: 4px;
 }
+.main-title-card {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 8px 0 0 120px;
+  padding: 8px 20px;
+  float: left;
+  background: #fffffa;
+  overflow: auto;
+  border: solid 1px #e4e4e4;
+  border-radius: 4px;
+}
+
 p:first-child {
   font-weight: 600;
   font-size: 20px;
@@ -129,14 +143,8 @@ p {
     flex-direction: column;
   }
   p:first-child {
-    /* padding-top: 0; */
     font-size: 17px;
   }
-
-  /* .main-title p:first-child {
-    margin-top: -10px;
-    font-weight: bold;
-  } */
   .profile_image {
     width: 124px;
     height: 124px;
@@ -154,6 +162,19 @@ p {
   }
   .main-title {
     width: 85%;
+  }
+  .main-title-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 8px 2px;
+    padding: 10px 20px;
+    float: left;
+    background: #fffffa;
+    overflow: auto;
+    border: solid 1px #e4e4e4;
+    border-radius: 4px;
   }
   .text {
     font-size: 11px;
