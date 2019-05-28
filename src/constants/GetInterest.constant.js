@@ -1,0 +1,6 @@
+const actionTypes = {
+  FETCH_INTEREST_SUCCESS: 'FETCH_INTEREST_SUCCESS',
+  FETCH_INTEREST_FAILURE: 'FETCH_INTEREST_FAILURE',
+};
+
+export default actionTypes;

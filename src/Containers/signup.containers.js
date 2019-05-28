@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import { signup } from '../actions/auth.actions';
+import authAction from '../actions/auth.actions';
 import Signup from '../Signup/Signup';
 
+const { signup } = authAction;
 const mapStateToProps = auth => auth;
 
 const SignupContainer = connect(

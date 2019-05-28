@@ -6,6 +6,7 @@ import UserHeader from '../Components/Global/User';
 import PartyList from '../Party/PartyList/PartyList';
 import OfficeList from '../Office/OfficeList/OfficeList';
 import InterestForm from '../Interest/InterestForm/InterestForm';
+import InterestedList from '../InterestedCandidates/InterestedList/InterestedList';
 import UserTab from '../UserTab/UserTab';
 import avatar from '../assets/img/avatar.png';
 import upload from '../services/upload';
@@ -24,9 +25,14 @@ class UserProfile extends Component {
   }
 
   componentDidMount = () => {
-    const { fetchAllParty, fetchAllOffice } = this.props;
+    const {
+      fetchAllParty,
+      fetchAllOffice,
+      fetchAllInterestdCandidate,
+    } = this.props;
     fetchAllParty();
     fetchAllOffice();
+    fetchAllInterestdCandidate();
   };
 
   handleChange = async e => {
@@ -55,10 +61,18 @@ class UserProfile extends Component {
   render() {
     const user = JSON.parse(localStorage.getItem('user'));
     const { loading, currentTab } = this.state;
-    const { partyList, officeList, interestList, declareInterest } = this.props;
+    const {
+      partyList,
+      officeList,
+      interestList,
+      declareInterest,
+      fetchInterestList,
+      fetchAllInterestdCandidate,
+    } = this.props;
     const { partyList: data } = partyList;
     const { officeList: officeData } = officeList;
     const { interestList: interestData } = interestList;
+    const { fetchInterestList: interestedData } = fetchInterestList;
     return (
       <React.Fragment>
         <div>
@@ -111,23 +125,22 @@ class UserProfile extends Component {
                     <OfficeList officeList={officeData} />
                   ) : null}
                   {currentTab === 'apply-section' ? (
-                    <p classNmae="user-tab-section">
-                      <InterestForm
-                        interestList={interestData}
-                        declareInterest={declareInterest}
-                        partyList={partyList}
-                        officeList={officeList}
-                      />
-                    </p>
+                    <InterestForm
+                      interestList={interestData}
+                      declareInterest={declareInterest}
+                      partyList={partyList}
+                      officeList={officeList}
+                    />
                   ) : null}
                   {currentTab === 'candidates-section' ? (
-                    <p classNmae="user-tab-section">
-                      Candidates section, Work in progress
-                    </p>
+                    <InterestedList
+                      fetchInterestList={interestedData}
+                      fetchAllInterestdCandidate={fetchAllInterestdCandidate}
+                    />
                   ) : null}
                   {currentTab === 'vote-section' ? (
                     <p classNmae="user-tab-section">
-                      Vote section, Work in progress
+                      <p>Vote section, Work in progress</p>
                     </p>
                   ) : null}
                   {currentTab === 'result-section' ? (
@@ -148,12 +161,15 @@ UserProfile.defaultProps = {
   partyList: {},
   officeList: {},
   interestList: {},
+  fetchInterestList: {},
 };
 UserProfile.propTypes = {
   fetchAllParty: PropTypes.func.isRequired,
   fetchAllOffice: PropTypes.func.isRequired,
+  fetchAllInterestdCandidate: PropTypes.func.isRequired,
   declareInterest: PropTypes.func.isRequired,
   partyList: PropTypes.shape(),
+  fetchInterestList: PropTypes.shape(),
   officeList: PropTypes.shape(),
   interestList: PropTypes.shape(),
 };

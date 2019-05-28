@@ -16,20 +16,27 @@ export const postInterestFailure = () => {
   };
 };
 
-const declareInterest = id => {
+const declareInterest = (id, interestDetails) => {
   return async dispatch => {
     try {
-      const data = await authService.postItem(`/interest/${id}`);
+      const interestData = {
+        office: parseInt(interestDetails.office, 10),
+        party: parseInt(interestDetails.party, 10),
+      };
+      const data = await authService.postItem(`/interest/${id}`, interestData);
       dispatch(postInterestSuccess(data));
       if (data.status === 201) {
         return notify.show('Thank you for showing interest', 'success');
       }
-      return notify.show('You have already showed an interest', 'error');
+      if (data.status >= 400) {
+        return notify.show(handleErrorMessage(data.error), 'error');
+      }
     } catch (error) {
-      return handleErrorMessage(error);
+      return notify.show(handleErrorMessage(error), 'error');
     } finally {
       dispatch(postInterestFailure());
     }
+    return dispatch(postInterestFailure());
   };
 };
 
