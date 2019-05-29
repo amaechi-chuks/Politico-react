@@ -75,8 +75,8 @@ class UserProfile extends Component {
     const { fetchInterestList: interestedData } = fetchInterestList;
     return (
       <React.Fragment>
+        {loading && <Loader />}
         <div>
-          {loading && <Loader />}
           <Notifications />
           <UserHeader />
           <section className="container">
@@ -89,18 +89,24 @@ class UserProfile extends Component {
                   alt="avatar"
                 />
                 <div className="card-container">
-                  <h4>
-                    <b>
-                      {user.firstname}
-                      &nbsp;
-                      {user.lastname}
-                    </b>
-                  </h4>
-                  <p>{user.email}</p>
+                  <div className="user-details">
+                    <h4>
+                      <b className="user-names">
+                        {user.firstname}
+                        &nbsp;
+                        {user.lastname}
+                      </b>
+                    </h4>
+                    <p className="user-email">{user.email}</p>
+                  </div>
+
                   <form encType="multipart/form-data">
-                    <label htmlFor="file-upload" className="custom-file-upload">
+                    <label
+                      htmlFor="file-upload"
+                      className="custom-file-upload upload-label"
+                    >
                       <i className="fa fa-upload" />
-                      Upload
+                      Choose image
                       <input
                         type="file"
                         id="file-upload"
