@@ -9,3 +9,10 @@
     grid-auto-columns: auto;
   }
 }
+.user-details {
+  text-align: center;
+}
+
+.upload-label {
+  cursor: pointer;
+}

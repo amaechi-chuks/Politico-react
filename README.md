@@ -6,7 +6,6 @@ Politico is a platform that enables citizens give their mandate to politicians r
 [![CircleCI](https://circleci.com/gh/amaechi-chuks/Politico-react.svg?style=svg)](https://circleci.com/gh/amaechi-chuks/Politico-react)
 [![Build Status](https://travis-ci.org/amaechi-chuks/Politico-react.svg?branch=develop)](https://travis-ci.org/amaechi-chuks/Politico-react)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8111789052b3f577763d/maintainability)](https://codeclimate.com/github/amaechi-chuks/Politico-react/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/amaechi-chuks/Politico-react/badge.svg?branch=develop)](https://coveralls.io/github/amaechi-chuks/Politico-react?branch=develop)
 
 ## Table of Contents
 
@@ -75,11 +74,13 @@ To run test cases
 
 ## _API Endpoints_
 
-| Endpoint            |     Functionality     | HTTP method |
-| ------------------- | :-------------------: | ----------: |
-| /api/v1/auth/signup | Create a user account |        POST |
-| /api/v1/auth/login  |     Login a user      |        POST |
-| /api/vi/profile     |   user profile page   |         GET |
+| Endpoint             |                   Functionality                   | HTTP method |
+| -------------------- | :-----------------------------------------------: | ----------: |
+| /api/v1/auth/signup  |               Create a user account               |        POST |
+| /api/v1/auth/login   |                   Login a user                    |        POST |
+| /api/vi/profile      |                 user profile page                 |         GET |
+| /api/vi/interest/:id | user can declare an interest to run for an office |        POST |
+| /api/vi/interest     |      user can get all interested candidates       |         GET |
 
 ## License
 

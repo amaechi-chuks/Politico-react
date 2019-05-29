@@ -8,8 +8,24 @@ const InterestedCard = ({ name, party, office }) => {
       <div className="image_title_bio">
         <div className="title_text_box">
           <p className="name">{name}</p>
-          {party ? <p className="user_bio">{party}</p> : <p>Not updated!</p>}
-          {office ? <p className="user_bio">{office}</p> : <p>Not updated!</p>}
+          {party ? (
+            <p className="user_bio">
+              <span className="candidate-details">Party:</span>
+              &nbsp;
+              {party}
+            </p>
+          ) : (
+            <p>Not updated!</p>
+          )}
+          {office ? (
+            <p className="user_bio">
+              <span className="candidate-details">Office:</span>
+              &nbsp;
+              {office}
+            </p>
+          ) : (
+            <p>Not updated!</p>
+          )}
         </div>
       </div>
     </div>
