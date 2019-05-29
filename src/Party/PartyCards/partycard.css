@@ -70,7 +70,9 @@ p {
   height: 110px;
   border-radius: 50%;
 }
-
+.candidate-details {
+  font-weight: bolder;
+}
 @media screen and (max-width: 768px) {
   .image_title_bio {
     display: flex;
