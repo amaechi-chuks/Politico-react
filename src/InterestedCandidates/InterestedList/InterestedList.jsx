@@ -18,7 +18,7 @@ class InterestedList extends Component {
             {fetchInterestList.map(userInterest => (
               <InterestedCards
                 key={userInterest.id}
-                name={userInterest.firstname}
+                name={`${userInterest.firstname} ${userInterest.lastname}`}
                 party={userInterest.partyname}
                 office={userInterest.officename}
               />

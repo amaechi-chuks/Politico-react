@@ -63,10 +63,10 @@ const login = userDetails => {
 };
 
 const signup = userDetails => {
+  if (!navigator.onLine) {
+    return notify.show('Please check your internet connection', 'error');
+  }
   return async dispatch => {
-    if (!navigator.onLine) {
-      notify.show('Please check your internet connection', 'error');
-    }
     dispatch(contentLoading());
     const res = await authServices.auth('signup', userDetails);
     if (res.status >= 400) {
