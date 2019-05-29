@@ -19,6 +19,9 @@ import User from '../../Components/Global/User';
 import Header from '../../Components/Header/Header';
 import HowItWorks from '../../Components/HowItWorks/HowItWorks';
 import LandingPage from '../../Components/LandingPage/LandingPage';
+import InterestedCard from '../../InterestedCandidates/InterestedCards/InterestedCards';
+import InterestedList from '../../InterestedCandidates/InterestedList/InterestedList';
+import UserTab from '../../UserTab/UserTab';
 
 const office = {
   name: 'federal',
@@ -32,6 +35,10 @@ const party = {
 const props = {
   fetchAllParty: jest.fn(),
   fetchAllOffice: jest.fn(),
+  fetchAllInterestdCandidate: jest.fn(),
+  declareInterest: jest.fn(),
+  partyList: {},
+  OfficeList: {},
 };
 
 const middleware = [thunk];
@@ -49,12 +56,6 @@ describe('ProifilePage component', () => {
     const wrapper = shallow(ProfilePageCont);
     expect(wrapper).toMatchSnapshot();
   });
-
-  // it('should render userPrfile page without crashing', () => {
-  //   localStorage.setItem('user', '{ "id": 2, "passporturl": "url" }');
-  //   const wrapper = shallow(<UserProfile {...props} />);
-  //   expect(wrapper.find('div'));
-  // });
 
   it('should render party without crashing', () => {
     const wrapper = shallow(<PartyList {...party} />);
@@ -144,6 +145,30 @@ describe('<HOWITWORKS SECTION />', () => {
 describe('<LANDINGPAGE SECTION />', () => {
   it('should render landing page section', () => {
     const wrapper = shallow(<LandingPage />);
+    expect(wrapper.find('div'));
+  });
+});
+describe('<INTERESTED CARDS />', () => {
+  it('should render interested cards', () => {
+    const wrapper = shallow(<InterestedCard />);
+    expect(wrapper.find('div'));
+  });
+});
+describe('<INTERESTED LIST />', () => {
+  it('should render interested cards', () => {
+    const propss = {
+      fetchAllInterestdCandidate: jest.fn(),
+    };
+    const wrapper = shallow(<InterestedList {...propss} />);
+    expect(wrapper.find('div'));
+  });
+});
+describe('<USERTAB LIST />', () => {
+  it('should render interested cards', () => {
+    const propss = {
+      fetchAllInterestdCandidate: jest.fn(),
+    };
+    const wrapper = shallow(<UserTab {...propss} />);
     expect(wrapper.find('div'));
   });
 });

@@ -75,11 +75,13 @@ To run test cases
 
 ## _API Endpoints_
 
-| Endpoint            |     Functionality     | HTTP method |
-| ------------------- | :-------------------: | ----------: |
-| /api/v1/auth/signup | Create a user account |        POST |
-| /api/v1/auth/login  |     Login a user      |        POST |
-| /api/vi/profile     |   user profile page   |         GET |
+| Endpoint             |                   Functionality                   | HTTP method |
+| -------------------- | :-----------------------------------------------: | ----------: |
+| /api/v1/auth/signup  |               Create a user account               |        POST |
+| /api/v1/auth/login   |                   Login a user                    |        POST |
+| /api/vi/profile      |                 user profile page                 |         GET |
+| /api/vi/interest/:id | user can declare an interest to run for an office |        POST |
+| /api/vi/interest     |      user can get all interested candidates       |         GET |
 
 ## License
 

@@ -20,7 +20,9 @@ describe('Home component', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   act(() => {
+    const wrapper = shallow(<App />);
     ReactDOM.render(<App />, div);
+    expect(wrapper).toMatchSnapshot();
   });
   ReactDOM.unmountComponentAtNode(div);
 });
