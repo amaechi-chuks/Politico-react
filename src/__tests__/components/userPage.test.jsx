@@ -8,7 +8,7 @@ import UserPage from '../../Userprofile/UserProfile';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({});
-
+localStorage.setItem('user', '{ "id": 2, "passporturl": "url" }');
 const props = {
   fetchAllParty: jest.fn(),
   fetchAllOffice: jest.fn(),
@@ -30,5 +30,21 @@ describe('<UserPage />', () => {
   it('renders UserPage', () => {
     const wrapper = shallow(UserPageComponent);
     expect(wrapper.find('div')).toEqual({});
+  });
+});
+
+describe('<UserPage />', () => {
+  it('renders UserPage', () => {
+    const inputEvent = {
+      file: [{}],
+    };
+    const wrapper = shallow(<UserPage {...props} />);
+    expect(wrapper.find('div'));
+    expect(wrapper.state('currentTab')).toBe('party-section');
+    wrapper.instance().changeTab('office-section');
+    expect(wrapper.state('currentTab')).toBe('office-section');
+    wrapper.instance().changeTab('candidate-section');
+    expect(wrapper.state('currentTab')).toBe('candidate-section');
+    wrapper.instance().handleChange(inputEvent);
   });
 });
