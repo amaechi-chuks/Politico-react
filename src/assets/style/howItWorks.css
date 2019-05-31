@@ -774,6 +774,81 @@ tr > td:last-child {
   height: auto;
 }
 
+@media only screen and (max-width: 1300px) {
+  .section2 .col3 {
+    margin-right: 5%;
+  }
+  .section1 .grid .col3 {
+    margin-right: 2%;
+  }
+  .section1 .col2.last .col3.last {
+    margin-right: 0;
+  }
+  .text-party {
+    margin-top: -5px;
+  }
+  .featured-cards .report-card1 {
+    margin-bottom: 20px;
+  }
+  .btn-primary3 {
+    margin: 30px;
+  }
+}
+@media only screen and (max-width: 1060px) {
+  .section1 .col2 {
+    width: 100%;
+    border-right: 0 !important;
+    padding: 0;
+  }
+  .featured-cards .report-card1 {
+    margin-bottom: 20px;
+  }
+  hr {
+    width: 25%;
+  }
+  .btn-primary3 {
+    margin: 30px;
+  }
+  .text-party {
+    margin-top: -5px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .profile,
+  .dashboard {
+    display: grid;
+    grid-auto-columns: 100%;
+    grid-template-columns: none;
+  }
+  .profile-card {
+    background: #fffffa;
+    display: flex;
+    flex-basis: 25%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    height: 96%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .profile,
+  .dashboard {
+    display: grid;
+    grid-auto-columns: 100%;
+    grid-template-columns: auto;
+  }
+  .profile-card {
+    background: #fffffa;
+    display: flex;
+    flex-basis: 25%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    height: 96%;
+  }
+}
 /* For smartphones (<768px) */
 @media screen and (max-width: 768px) {
   .btn-primary3 {
@@ -989,45 +1064,6 @@ tr > td:last-child {
 }
 .party-logo {
   width: 35px;
-}
-@media only screen and (max-width: 1300px) {
-  .section2 .col3 {
-    margin-right: 5%;
-  }
-  .section1 .grid .col3 {
-    margin-right: 2%;
-  }
-  .section1 .col2.last .col3.last {
-    margin-right: 0;
-  }
-  .text-party {
-    margin-top: -5px;
-  }
-  .featured-cards .report-card1 {
-    margin-bottom: 20px;
-  }
-  .btn-primary3 {
-    margin: 30px;
-  }
-}
-@media only screen and (max-width: 1060px) {
-  .section1 .col2 {
-    width: 100%;
-    border-right: 0 !important;
-    padding: 0;
-  }
-  .featured-cards .report-card1 {
-    margin-bottom: 20px;
-  }
-  hr {
-    width: 25%;
-  }
-  .btn-primary3 {
-    margin: 30px;
-  }
-  .text-party {
-    margin-top: -5px;
-  }
 }
 
 @media only screen and (max-width: 660px) {

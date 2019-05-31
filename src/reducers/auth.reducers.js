@@ -11,6 +11,8 @@ const auth = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.BEGIN_LOADING:
       return { ...state, loading: true };
+    case actionTypes.STOP_LOADING:
+      return { ...state, loading: false };
     case actionTypes.LOGIN_FAILURE:
       return { ...state, loading: false };
     case actionTypes.LOGIN_SUCCESS_ADMIN:

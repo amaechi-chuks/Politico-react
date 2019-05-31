@@ -10,7 +10,9 @@ class UserTab extends Component {
   }
 
   render() {
+    const user = JSON.parse(localStorage.getItem('user'));
     const { changeTab, currentTab } = this.props;
+
     const UserTabItems = [
       {
         id: 1,
@@ -43,11 +45,38 @@ class UserTab extends Component {
         section: 'result-section',
       },
     ];
+    const AdminTabItems = [
+      {
+        id: 7,
+        value: 'Create Party',
+        section: 'create-party-section',
+      },
+      {
+        id: 8,
+        value: 'Create Office',
+        section: 'create-office-section',
+      },
+    ];
     return (
       <React.Fragment>
         <div className="admin-page">
           <div className="admin-tab">
             <div className="admin-tab-items-left">
+              {user.isadmin === true &&
+                AdminTabItems.map(tab => {
+                  return (
+                    <UserButton
+                      key={tab.id}
+                      value={tab.value}
+                      className={
+                        currentTab === tab.section
+                          ? 'admin-btn-active'
+                          : 'admin-btn'
+                      }
+                      onClick={() => changeTab(tab.section)}
+                    />
+                  );
+                })}
               {UserTabItems.map(tab => {
                 return (
                   <UserButton

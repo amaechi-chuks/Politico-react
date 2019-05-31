@@ -23,6 +23,7 @@ import InterestedCard from '../../InterestedCandidates/InterestedCards/Intereste
 import InterestedList from '../../InterestedCandidates/InterestedList/InterestedList';
 import UserTab from '../../UserTab/UserTab';
 
+localStorage.setItem('user', '{ "id": 2, "isadmin": "true" }');
 const office = {
   name: 'federal',
   type: 'senate',

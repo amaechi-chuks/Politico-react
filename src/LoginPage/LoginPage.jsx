@@ -36,7 +36,7 @@ class Login extends Component {
   render() {
     const { loginDetails } = this.state;
     const { auth } = this.props;
-    const { loading, redirect, isadmin } = auth;
+    const { loading, redirect } = auth;
     return (
       <React.Fragment>
         <Notifications />
@@ -88,8 +88,7 @@ class Login extends Component {
             </form>
           </section>
         </main>
-        {isadmin && redirect && <Redirect to="/admin" />}
-        {!isadmin && redirect && <Redirect to="/user-profile" />}
+        {redirect && <Redirect to="/user-profile" />}
       </React.Fragment>
     );
   }

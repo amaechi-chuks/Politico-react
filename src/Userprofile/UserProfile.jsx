@@ -12,6 +12,7 @@ import avatar from '../assets/img/avatar.png';
 import upload from '../services/upload';
 import Loader from '../Components/Global/Loader';
 import Button from '../Components/Global/Buttons';
+import Modal from '../Components/Modals/Modal';
 import './user.css';
 
 class UserProfile extends Component {
@@ -21,8 +22,20 @@ class UserProfile extends Component {
       imageUrl: null,
       loading: false,
       currentTab: 'party-section',
+      modalOpen: false,
+      partyId: '',
+      partyDetails: {
+        partyname: '',
+      },
     };
   }
+
+  EditPartyName = async (e, id, partyData) => {
+    const { editParty } = this.props;
+    e.preventDefault();
+    await editParty(id, partyData);
+    this.closeModal();
+  };
 
   componentDidMount = () => {
     const {
@@ -35,8 +48,13 @@ class UserProfile extends Component {
     fetchAllInterestdCandidate();
   };
 
+  handlePartyName = ({ target }) => {
+    const { partyDetails } = this.state;
+    partyDetails[target.id] = target.value;
+    this.setState({ partyDetails });
+  };
+
   handleChange = async e => {
-    this.setState({ loading: true });
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -46,21 +64,36 @@ class UserProfile extends Component {
   };
 
   uploadImage = async () => {
+    this.setState({ loading: true });
     const { imageUrl } = this.state;
     const formData = new FormData();
     formData.append('passporturl', imageUrl);
     const res = await upload.uploadPic(formData);
     localStorage.setItem('user', JSON.stringify(res.data[0]));
-    this.setState({ loading: true });
+    this.setState({ loading: false });
   };
 
   changeTab = tab => {
     this.setState({ currentTab: tab });
   };
 
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
+  openModal = id => {
+    this.setState({ modalOpen: true, partyId: id });
+  };
+
   render() {
     const user = JSON.parse(localStorage.getItem('user'));
-    const { loading, currentTab } = this.state;
+    const {
+      loading,
+      currentTab,
+      modalOpen,
+      partyId,
+      partyDetails,
+    } = this.state;
     const {
       partyList,
       officeList,
@@ -68,19 +101,25 @@ class UserProfile extends Component {
       declareInterest,
       fetchInterestList,
       fetchAllInterestdCandidate,
+      editPartyList,
     } = this.props;
     const { partyList: data } = partyList;
+    const { editPartyList: editData } = editPartyList;
     const { officeList: officeData } = officeList;
     const { interestList: interestData } = interestList;
     const { fetchInterestList: interestedData } = fetchInterestList;
     return (
       <React.Fragment>
-        {loading && <Loader />}
         <div>
           <Notifications />
           <UserHeader />
           <section className="container">
-            <h2 className="section-title">User Profile</h2>
+            {loading && <Loader />}
+            {user.isadmin === true ? (
+              <h2 className="section-title">Admin Profile</h2>
+            ) : (
+              <h2 className="section-title">User Profile</h2>
+            )}
             <div className="profile">
               <div className="card profile-card">
                 <img
@@ -125,7 +164,11 @@ class UserProfile extends Component {
                 <UserTab changeTab={this.changeTab} currentTab={currentTab} />
                 <div className="admin-content">
                   {currentTab === 'party-section' ? (
-                    <PartyList partyList={data} />
+                    <PartyList
+                      partyList={data}
+                      user={user}
+                      modalOpen={this.openModal}
+                    />
                   ) : null}
                   {currentTab === 'office-section' ? (
                     <OfficeList officeList={officeData} />
@@ -154,10 +197,48 @@ class UserProfile extends Component {
                       Result section, Work in progress
                     </p>
                   ) : null}
+                  {currentTab === 'create-party-section' ? (
+                    <p classNmae="user-tab-section">
+                      Create Party section, Work in progress
+                    </p>
+                  ) : null}
                 </div>
               </div>
             </div>
           </section>
+          <Modal
+            modalOpen={modalOpen}
+            title="Edit Party Name"
+            closeModal={this.closeModal}
+            openModal={this.openModal}
+            editPartyList={editData}
+          >
+            <form
+              className="edit-profile-form-modal"
+              onSubmit={e => this.EditPartyName(e, partyId, partyDetails)}
+            >
+              <label htmlFor="edit-party-by-name">
+                <p>Enter Party Name</p>
+                <input
+                  type="text"
+                  id="partyname"
+                  onChange={this.handlePartyName}
+                />
+              </label>
+              <div>
+                <button type="submit" className="edt-btn">
+                  Update
+                </button>
+                <button
+                  type="button"
+                  className="cancel-btn"
+                  onClick={this.closeModal}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </Modal>
         </div>
       </React.Fragment>
     );
@@ -168,16 +249,19 @@ UserProfile.defaultProps = {
   officeList: {},
   interestList: {},
   fetchInterestList: {},
+  editPartyList: {},
 };
 UserProfile.propTypes = {
   fetchAllParty: PropTypes.func.isRequired,
   fetchAllOffice: PropTypes.func.isRequired,
+  editPartyList: PropTypes.shape(),
   fetchAllInterestdCandidate: PropTypes.func.isRequired,
   declareInterest: PropTypes.func.isRequired,
   partyList: PropTypes.shape(),
   fetchInterestList: PropTypes.shape(),
   officeList: PropTypes.shape(),
   interestList: PropTypes.shape(),
+  editParty: PropTypes.func.isRequired,
 };
 
 export default UserProfile;
