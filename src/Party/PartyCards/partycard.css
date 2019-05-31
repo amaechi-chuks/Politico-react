@@ -45,6 +45,52 @@ p:first-child {
   grid-auto-columns: 100%;
   grid-template-columns: repeat(2, 1fr);
 }
+/*** admin decision ****/
+.admin_decision_on_request {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-self: center;
+}
+.main_button {
+  width: 90%;
+  margin: 10px auto;
+  display: flex;
+}
+.btn-accept {
+  text-transform: capitalize;
+  margin: 0 5px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: solid 1px #008000;
+  color: #008000;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  background: #ffffff;
+}
+.btn-reject {
+  text-transform: capitalize;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: solid 1px #ff0000;
+  color: #ff0000;
+  font-size: 14px;
+  cursor: pointer;
+  background: #ffffff;
+  outline: none;
+}
+.btn-accept:hover {
+  background: #008000;
+  color: #ffffff;
+  outline: none;
+}
+.btn-reject:hover {
+  background: #ff0000;
+  color: #ffffff;
+  outline: none;
+}
 p {
   font-size: 14px;
   margin-top: 5px;
@@ -89,7 +135,14 @@ p {
     margin-top: -10px;
     font-weight: bold;
   }
-
+  .main_button {
+    display: flex;
+    width: 100%;
+    margin: 10px auto;
+  }
+  .admin_decision_on_request {
+    width: 65%;
+  }
   .initials {
     margin: 0;
     padding: 50px 0;
@@ -156,6 +209,11 @@ p {
     float: left;
     text-align: center;
     color: #ffffff;
+  }
+  .main_button {
+    display: flex;
+    width: 100%;
+    margin: 10px auto;
   }
   .user_pic {
     width: 100%;

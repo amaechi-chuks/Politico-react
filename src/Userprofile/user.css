@@ -4,15 +4,23 @@
 .admin-content p {
   margin: 0 auto;
 }
-@media screen and (max-width: 600px) {
-  .user-profile-tab-section {
-    grid-auto-columns: auto;
-  }
-}
 .user-details {
   text-align: center;
 }
 
 .upload-label {
   cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .user-profile-tab-section {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .user-profile-tab-section {
+    grid-auto-columns: auto;
+  }
 }
