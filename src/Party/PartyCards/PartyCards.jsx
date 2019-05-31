@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './partycard.css';
 
-// const user = JSON.parse(localStorage.getItem('user'));
 const ReviewerRequestCard = ({
   user,
   name,

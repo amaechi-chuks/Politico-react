@@ -115,7 +115,11 @@ class UserProfile extends Component {
           <UserHeader />
           <section className="container">
             {loading && <Loader />}
-            <h2 className="section-title">User Profile</h2>
+            {user.isadmin === true ? (
+              <h2 className="section-title">Admin Profile</h2>
+            ) : (
+              <h2 className="section-title">User Profile</h2>
+            )}
             <div className="profile">
               <div className="card profile-card">
                 <img
