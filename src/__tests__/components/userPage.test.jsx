@@ -14,6 +14,8 @@ const props = {
   fetchAllOffice: jest.fn(),
   fetchAllInterestdCandidate: jest.fn(),
   partyList: jest.fn(),
+  editParty: jest.fn(),
+  createParty: jest.fn(),
   officeList: jest.fn(),
   interestList: jest.fn(),
   declareInterest: jest.fn(),
@@ -45,6 +47,8 @@ describe('<UserPage />', () => {
     expect(wrapper.state('currentTab')).toBe('office-section');
     wrapper.instance().changeTab('candidate-section');
     expect(wrapper.state('currentTab')).toBe('candidate-section');
+    wrapper.instance().changeTab('create-party-section');
+    expect(wrapper.state('currentTab')).toBe('create-party-section');
     wrapper.instance().handleChange(inputEvent);
   });
 });
