@@ -53,7 +53,7 @@ button {
   outline: none;
 }
 .admin-btn button .text {
-  font-size: 25px;
+  font-size: 17px;
 }
 .admin-btn button .text:active {
   color: #ffffff;

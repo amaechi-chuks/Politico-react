@@ -57,6 +57,12 @@ class UserProfile extends Component {
     this.closeModal();
   };
 
+  deleteParty = async id => {
+    const { deleteParty, fetchAllParty } = this.props;
+    await deleteParty(id);
+    fetchAllParty();
+  };
+
   handleChange = async e => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -179,6 +185,7 @@ class UserProfile extends Component {
                     <PartyList
                       partyList={data}
                       editPartyList={editData}
+                      deleteParty={this.deleteParty}
                       user={user}
                       modalOpen={this.openModal}
                     />
@@ -285,6 +292,7 @@ UserProfile.propTypes = {
   createPartyList: PropTypes.shape(),
   createOfficeList: PropTypes.shape(),
   editParty: PropTypes.func.isRequired,
+  deleteParty: PropTypes.func.isRequired,
 };
 
 export default UserProfile;

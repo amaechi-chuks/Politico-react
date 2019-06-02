@@ -22,9 +22,10 @@ export const updatePartyFailure = () => {
   };
 };
 
-export const createPartySuccess = () => {
+export const createPartySuccess = partyId => {
   return {
     type: actions.CREATE_PARTY_SUCCESS,
+    partyId,
   };
 };
 
@@ -34,15 +35,28 @@ export const createPartyFailure = () => {
   };
 };
 
-export const createOfficeSuccess = () => {
+export const createOfficeSuccess = officeId => {
   return {
     type: actions.CREATE_OFFICE_SUCCESS,
+    officeId,
   };
 };
 
 export const createOfficeFailure = () => {
   return {
     type: actions.CREATE_OFFICE_FAILURE,
+  };
+};
+export const deletePartySuccess = partyId => {
+  return {
+    type: actions.DELETE_PARTY_SUCCESS,
+    partyId,
+  };
+};
+
+export const deletePartyFailure = () => {
+  return {
+    type: actions.DELETE_PARTY_FAILURE,
   };
 };
 const editParty = (partyId, partyName) => {
@@ -115,10 +129,39 @@ const createOffice = officeDetails => {
     return dispatch(createOfficeFailure());
   };
 };
+
+const deleteParty = partyId => {
+  if (!navigator.onLine) {
+    notify.show('Please check your internet connection', 'error');
+  }
+  return async dispatch => {
+    try {
+      dispatch(contentLoading());
+      const data = await authServices.deleteItem(`/parties/${partyId}`);
+      dispatch(deletePartySuccess(data));
+      if (data.status === 200) {
+        return notify.show(
+          'You have successfully deleteed this party',
+          'success'
+        );
+      }
+      dispatch(deletePartyFailure(data));
+      if (data.status >= 400) {
+        return notify.show(handleErrorMessage(data.error), 'error');
+      }
+    } catch (error) {
+      return notify.show(handleErrorMessage(error), 'error');
+    } finally {
+      dispatch(deletePartyFailure());
+    }
+    return dispatch(deletePartyFailure());
+  };
+};
 const adminUpdateParty = {
   editParty,
   createParty,
   createOffice,
+  deleteParty,
 };
 
 export default adminUpdateParty;
