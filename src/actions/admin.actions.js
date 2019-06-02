@@ -1,12 +1,18 @@
-import { toast } from 'react-notify-toast';
+import { notify } from 'react-notify-toast';
 import actions from '../constants/Admin.contants';
 import authServices from '../services/http.service';
 import handleErrorMessage from '../helpers/handleErrorMessage.js';
 
-export const updatePartySuccess = id => {
+export const contentLoading = () => {
+  return {
+    type: actions.BEGIN_LOADING,
+  };
+};
+
+export const updatePartySuccess = partyId => {
   return {
     type: actions.UPDATE_PARTY_SUCCESS,
-    id,
+    partyId,
   };
 };
 
@@ -16,22 +22,32 @@ export const updatePartyFailure = () => {
   };
 };
 
+export const createPartySuccess = () => {
+  return {
+    type: actions.CREATE_PARTY_SUCCESS,
+  };
+};
+
+export const createPartyFailure = () => {
+  return {
+    type: actions.UPDATE_PARTY_FAILURE,
+  };
+};
+
 const editParty = (partyId, partyName) => {
   return async dispatch => {
     if (!navigator.onLine) {
-      toast.error('Please check your internet connection');
+      notify.show('Please check your internet connection', 'error');
     }
     try {
-      const data = await authServices.patchItem(
+      dispatch(contentLoading());
+      const { data } = await authServices.patchItem(
         `parties/${partyId}`,
         partyName
       );
+
       dispatch(updatePartySuccess(data.data));
-      toast.success(`You have successfuly updated this party `, {
-        type: toast.TYPE.INFO,
-        closeButton: true,
-        position: toast.POSITION.TOP_CENTER,
-      });
+      notify.success('You have successfuly updated this party', 'sucess');
     } catch (error) {
       dispatch(updatePartyFailure());
       handleErrorMessage(error);
@@ -39,8 +55,33 @@ const editParty = (partyId, partyName) => {
   };
 };
 
+const createParty = partyDetails => {
+  if (!navigator.onLine) {
+    notify.show('Please check your internet connection', 'error');
+  }
+  return async dispatch => {
+    try {
+      dispatch(contentLoading());
+      const data = await authServices.postItem(`/parties`, partyDetails);
+      dispatch(createPartySuccess(data));
+      if (data.status === 201) {
+        return notify.show('You have successfully created a party', 'success');
+      }
+      dispatch(createPartyFailure(data));
+      if (data.status >= 400) {
+        return notify.show(handleErrorMessage(data.error), 'error');
+      }
+    } catch (error) {
+      return notify.show(handleErrorMessage(error), 'error');
+    } finally {
+      dispatch(createPartyFailure());
+    }
+    return dispatch(createPartyFailure());
+  };
+};
 const adminUpdateParty = {
   editParty,
+  createParty,
 };
 
 export default adminUpdateParty;

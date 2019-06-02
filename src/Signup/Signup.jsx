@@ -122,6 +122,7 @@ class Signup extends Component {
               <Button
                 value="Sign Up"
                 id="signup"
+                type="submit"
                 className="btn btn-primary2 updat"
                 onClick={this.handleClick}
               />

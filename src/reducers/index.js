@@ -5,6 +5,7 @@ import officeList from './office.reducers';
 import interestList from './interest.reducers';
 import fetchInterestList from './getInterest.reducer';
 import editPartyList from './editParty.reducers';
+import createPartyList from './createPartyList.reducer';
 
 const reducers = combineReducers({
   auth,
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   interestList,
   fetchInterestList,
   editPartyList,
+  createPartyList,
 });
 
 export default reducers;
