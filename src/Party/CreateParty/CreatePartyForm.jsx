@@ -98,8 +98,8 @@ class CreatePartyForm extends Component {
               />
             </label>
             <Button
-              value="Apply"
-              type="submit"
+              value="Submit"
+              type="Submit"
               className="btn btn-primary user-form"
               onClick={this.handleClick}
             />

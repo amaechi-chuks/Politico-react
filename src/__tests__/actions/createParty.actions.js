@@ -32,7 +32,7 @@ describe('create party actions', () => {
   it('should create an action for interest failure', async () => {
     const expectedAction = [
       {
-        type: types.UPDATE_PARTY_FAILURE,
+        type: types.CREATE_PARTY_FAILURE,
       },
     ];
     const store = mockStore({});
