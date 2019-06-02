@@ -79,9 +79,15 @@ To run test cases
 | -------------------- | :-----------------------------------------------: | ----------: |
 | /api/v1/auth/signup  |               Create a user account               |        POST |
 | /api/v1/auth/login   |                   Login a user                    |        POST |
-| /api/vi/profile      |                 user profile page                 |         GET |
-| /api/vi/interest/:id | user can declare an interest to run for an office |        POST |
-| /api/vi/interest     |      user can get all interested candidates       |         GET |
+| /api/vi/profile      |                 User profile page                 |         GET |
+| /api/vi/interest/:id | User can declare an interest to run for an office |        POST |
+| /api/vi/interest     |      User can get all interested candidates       |         GET |
+| /api/vi/offices      |         User can get all political office         |         GET |
+| /api/vi/parties      |        User can get all political parties         |         GET |
+| /api/vi/parties      |        Admin can create a political party         |        POST |
+| /api/vi/offices      |        Admin can create a politcal offices        |        POST |
+| /api/vi/parties/:id  |      Admin can update a political party name      |       PATCH |
+| /api/vi/profile_pic  |          User can update profile picture          |        POST |
 
 ## License
 

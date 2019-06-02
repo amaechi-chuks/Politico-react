@@ -30,10 +30,21 @@ export const createPartySuccess = () => {
 
 export const createPartyFailure = () => {
   return {
-    type: actions.UPDATE_PARTY_FAILURE,
+    type: actions.CREATE_PARTY_FAILURE,
   };
 };
 
+export const createOfficeSuccess = () => {
+  return {
+    type: actions.CREATE_OFFICE_SUCCESS,
+  };
+};
+
+export const createOfficeFailure = () => {
+  return {
+    type: actions.CREATE_OFFICE_FAILURE,
+  };
+};
 const editParty = (partyId, partyName) => {
   return async dispatch => {
     if (!navigator.onLine) {
@@ -79,9 +90,35 @@ const createParty = partyDetails => {
     return dispatch(createPartyFailure());
   };
 };
+
+const createOffice = officeDetails => {
+  if (!navigator.onLine) {
+    notify.show('Please check your internet connection', 'error');
+  }
+  return async dispatch => {
+    try {
+      dispatch(contentLoading());
+      const data = await authServices.postItem(`/offices`, officeDetails);
+      dispatch(createOfficeSuccess(data));
+      if (data.status === 201) {
+        return notify.show('You have successfully reated an office', 'success');
+      }
+      dispatch(createOfficeFailure(data));
+      if (data.status >= 400) {
+        return notify.show(handleErrorMessage(data.error), 'error');
+      }
+    } catch (error) {
+      return notify.show(handleErrorMessage(error), 'error');
+    } finally {
+      dispatch(createOfficeFailure());
+    }
+    return dispatch(createOfficeFailure());
+  };
+};
 const adminUpdateParty = {
   editParty,
   createParty,
+  createOffice,
 };
 
 export default adminUpdateParty;
