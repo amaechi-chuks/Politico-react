@@ -6,6 +6,7 @@ import UserHeader from '../Components/Global/User';
 import PartyList from '../Party/PartyList/PartyList';
 import OfficeList from '../Office/OfficeList/OfficeList';
 import InterestForm from '../Interest/InterestForm/InterestForm';
+import CreateOfficeForm from '../Office/CreateOffice/CreateOfficeForm';
 import CreatePartyForm from '../Party/CreateParty/CreatePartyForm';
 import InterestedList from '../InterestedCandidates/InterestedList/InterestedList';
 import UserTab from '../UserTab/UserTab';
@@ -101,12 +102,15 @@ class UserProfile extends Component {
       officeList,
       interestList,
       createPartyList,
+      createOfficeList,
       declareInterest,
       fetchInterestList,
       fetchAllParty,
+      fetchAllOffice,
       fetchAllInterestdCandidate,
       editPartyList,
       createParty,
+      createOffice,
     } = this.props;
     const { partyList: data } = partyList;
     const { editPartyList: editData } = editPartyList;
@@ -114,6 +118,8 @@ class UserProfile extends Component {
     const { interestList: interestData } = interestList;
     const { fetchInterestList: interestedData } = fetchInterestList;
     const { createPartyList: createPartyListData } = createPartyList;
+    const { createOfficeList: createOfficeListData } = createOfficeList;
+
     return (
       <React.Fragment>
         <div>
@@ -212,9 +218,11 @@ class UserProfile extends Component {
                     />
                   ) : null}
                   {currentTab === 'create-office-section' ? (
-                    <p classNmae="user-tab-section">
-                      Create Office section, Work in progress
-                    </p>
+                    <CreateOfficeForm
+                      createOfficeList={createOfficeListData}
+                      createOffice={createOffice}
+                      fetchAllOffice={fetchAllOffice}
+                    />
                   ) : null}
                 </div>
               </div>
@@ -260,6 +268,7 @@ UserProfile.defaultProps = {
   fetchInterestList: {},
   editPartyList: {},
   createPartyList: {},
+  createOfficeList: {},
 };
 UserProfile.propTypes = {
   fetchAllParty: PropTypes.func.isRequired,
@@ -268,11 +277,13 @@ UserProfile.propTypes = {
   fetchAllInterestdCandidate: PropTypes.func.isRequired,
   declareInterest: PropTypes.func.isRequired,
   createParty: PropTypes.func.isRequired,
+  createOffice: PropTypes.func.isRequired,
   partyList: PropTypes.shape(),
   fetchInterestList: PropTypes.shape(),
   officeList: PropTypes.shape(),
   interestList: PropTypes.shape(),
   createPartyList: PropTypes.shape(),
+  createOfficeList: PropTypes.shape(),
   editParty: PropTypes.func.isRequired,
 };
 
