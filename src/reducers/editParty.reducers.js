@@ -1,5 +1,4 @@
 import actionTypes from '../constants/Admin.contants';
-import filters from '../helpers/filterDeleteParty';
 
 const initialState = {
   editPartyList: [],
@@ -13,11 +12,9 @@ const editPartyList = (state = initialState, action) => {
     case actionTypes.UPDATE_PARTY_FAILURE:
       return { ...state };
     case actionTypes.DELETE_PARTY_SUCCESS: {
-      const newPartyList = filters(state.editPartyList, action.partyId);
-      console.log(newPartyList, 'newPartyList');
       return {
         ...state,
-        deletePartyList: newPartyList,
+        deletePartyList: action.partyId,
       };
     }
 
