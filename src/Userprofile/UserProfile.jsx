@@ -71,7 +71,6 @@ class UserProfile extends Component {
     const formData = new FormData();
     formData.append('passporturl', imageUrl);
     const res = await upload.uploadPic(formData);
-    console.log(res, '>>>>>>>>>>');
     localStorage.setItem('user', JSON.stringify(res.data[0]));
     this.setState({ loading: false });
   };
