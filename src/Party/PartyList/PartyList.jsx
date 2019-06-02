@@ -4,7 +4,13 @@ import PartyCards from '../PartyCards/PartyCards';
 import '../PartyCards/partycard.css';
 
 const PartyList = props => {
-  const { partyList, modalOpen, adminRejectRequest, user } = props;
+  const {
+    partyList,
+    modalOpen,
+    adminRejectRequest,
+    user,
+    fetchAllParty,
+  } = props;
   return (
     <div>
       <div className="main_page_title">
@@ -13,7 +19,7 @@ const PartyList = props => {
             <PartyCards
               user={user}
               key={party.id}
-              logoUrl={party.logoUrl}
+              logourl={party.logourl}
               name={party.name}
               initials={`${party.name
                 .split(' ')
@@ -21,6 +27,7 @@ const PartyList = props => {
                 .toUpperCase()}`}
               hqAddress={party.hqaddress}
               modalOpen={() => modalOpen(party.id)}
+              fetchAllParty={fetchAllParty}
               adminRejectRequest={() => adminRejectRequest(party.user_id)}
               button="Edit"
               button1="Delete"
@@ -44,6 +51,7 @@ PartyList.propTypes = {
   user: PropTypes.shape(),
   modalOpen: PropTypes.func.isRequired,
   adminRejectRequest: PropTypes.func.isRequired,
+  fetchAllParty: PropTypes.func.isRequired,
 };
 
 export default PartyList;

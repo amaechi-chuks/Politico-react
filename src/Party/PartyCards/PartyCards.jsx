@@ -5,7 +5,7 @@ import './partycard.css';
 const ReviewerRequestCard = ({
   user,
   name,
-  logoUrl,
+  logourl,
   hqAddress,
   initials,
   button,
@@ -19,8 +19,8 @@ const ReviewerRequestCard = ({
     <div className="main-title">
       <div className="image_title_bio">
         <div className="profile_image">
-          {logoUrl ? (
-            <img className="user_pic" src={logoUrl} alt="" />
+          {logourl ? (
+            <img className="user_pic" src={logourl} alt="" />
           ) : (
             <p className="initials">{initials}</p>
           )}
@@ -67,7 +67,7 @@ ReviewerRequestCard.defaultProps = {
 ReviewerRequestCard.propTypes = {
   name: PropTypes.string.isRequired,
   initials: PropTypes.string.isRequired,
-  logoUrl: PropTypes.string.isRequired,
+  logourl: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
   button1: PropTypes.string.isRequired,
   btnClass: PropTypes.string.isRequired,

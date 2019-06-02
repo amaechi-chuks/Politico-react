@@ -7,7 +7,7 @@ import DeclareInterestAction from '../actions/interest.actions';
 import FetchInterestAction from '../actions/getInterest.actions';
 
 const { fetchAllParty } = PartyAction;
-const { editParty } = adminUpdateParty;
+const { editParty, createParty } = adminUpdateParty;
 const { fetchAllOffice } = OfficeAction;
 const { declareInterest } = DeclareInterestAction;
 const { fetchAllInterestdCandidate } = FetchInterestAction;
@@ -17,12 +17,14 @@ const mapStateToProps = ({
   interestList,
   fetchInterestList,
   editPartyList,
+  createPartyList,
 }) => ({
   partyList,
   officeList,
   interestList,
   fetchInterestList,
   editPartyList,
+  createPartyList,
 });
 
 const ProfileContainer = connect(
@@ -33,6 +35,7 @@ const ProfileContainer = connect(
     declareInterest,
     fetchAllInterestdCandidate,
     editParty,
+    createParty,
   }
 )(UserProfile);
 

@@ -6,6 +6,7 @@ import UserHeader from '../Components/Global/User';
 import PartyList from '../Party/PartyList/PartyList';
 import OfficeList from '../Office/OfficeList/OfficeList';
 import InterestForm from '../Interest/InterestForm/InterestForm';
+import CreatePartyForm from '../Party/CreateParty/CreatePartyForm';
 import InterestedList from '../InterestedCandidates/InterestedList/InterestedList';
 import UserTab from '../UserTab/UserTab';
 import avatar from '../assets/img/avatar.png';
@@ -25,17 +26,10 @@ class UserProfile extends Component {
       modalOpen: false,
       partyId: '',
       partyDetails: {
-        partyname: '',
+        name: '',
       },
     };
   }
-
-  EditPartyName = async (e, id, partyData) => {
-    const { editParty } = this.props;
-    e.preventDefault();
-    await editParty(id, partyData);
-    this.closeModal();
-  };
 
   componentDidMount = () => {
     const {
@@ -54,6 +48,14 @@ class UserProfile extends Component {
     this.setState({ partyDetails });
   };
 
+  EditPartyName = async (e, id, partyData) => {
+    const { editParty, fetchAllParty } = this.props;
+    e.preventDefault();
+    await editParty(id, partyData);
+    fetchAllParty();
+    this.closeModal();
+  };
+
   handleChange = async e => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -69,6 +71,7 @@ class UserProfile extends Component {
     const formData = new FormData();
     formData.append('passporturl', imageUrl);
     const res = await upload.uploadPic(formData);
+    console.log(res, '>>>>>>>>>>');
     localStorage.setItem('user', JSON.stringify(res.data[0]));
     this.setState({ loading: false });
   };
@@ -98,16 +101,20 @@ class UserProfile extends Component {
       partyList,
       officeList,
       interestList,
+      createPartyList,
       declareInterest,
       fetchInterestList,
+      fetchAllParty,
       fetchAllInterestdCandidate,
       editPartyList,
+      createParty,
     } = this.props;
     const { partyList: data } = partyList;
     const { editPartyList: editData } = editPartyList;
     const { officeList: officeData } = officeList;
     const { interestList: interestData } = interestList;
     const { fetchInterestList: interestedData } = fetchInterestList;
+    const { createPartyList: createPartyListData } = createPartyList;
     return (
       <React.Fragment>
         <div>
@@ -166,6 +173,7 @@ class UserProfile extends Component {
                   {currentTab === 'party-section' ? (
                     <PartyList
                       partyList={data}
+                      editPartyList={editData}
                       user={user}
                       modalOpen={this.openModal}
                     />
@@ -198,8 +206,15 @@ class UserProfile extends Component {
                     </p>
                   ) : null}
                   {currentTab === 'create-party-section' ? (
+                    <CreatePartyForm
+                      createPartyList={createPartyListData}
+                      createParty={createParty}
+                      fetchAllParty={fetchAllParty}
+                    />
+                  ) : null}
+                  {currentTab === 'create-office-section' ? (
                     <p classNmae="user-tab-section">
-                      Create Party section, Work in progress
+                      Create Office section, Work in progress
                     </p>
                   ) : null}
                 </div>
@@ -211,7 +226,6 @@ class UserProfile extends Component {
             title="Edit Party Name"
             closeModal={this.closeModal}
             openModal={this.openModal}
-            editPartyList={editData}
           >
             <form
               className="edit-profile-form-modal"
@@ -219,11 +233,7 @@ class UserProfile extends Component {
             >
               <label htmlFor="edit-party-by-name">
                 <p>Enter Party Name</p>
-                <input
-                  type="text"
-                  id="partyname"
-                  onChange={this.handlePartyName}
-                />
+                <input type="text" id="name" onChange={this.handlePartyName} />
               </label>
               <div>
                 <button type="submit" className="edt-btn">
@@ -250,6 +260,7 @@ UserProfile.defaultProps = {
   interestList: {},
   fetchInterestList: {},
   editPartyList: {},
+  createPartyList: {},
 };
 UserProfile.propTypes = {
   fetchAllParty: PropTypes.func.isRequired,
@@ -257,10 +268,12 @@ UserProfile.propTypes = {
   editPartyList: PropTypes.shape(),
   fetchAllInterestdCandidate: PropTypes.func.isRequired,
   declareInterest: PropTypes.func.isRequired,
+  createParty: PropTypes.func.isRequired,
   partyList: PropTypes.shape(),
   fetchInterestList: PropTypes.shape(),
   officeList: PropTypes.shape(),
   interestList: PropTypes.shape(),
+  createPartyList: PropTypes.shape(),
   editParty: PropTypes.func.isRequired,
 };
 
