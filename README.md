@@ -88,6 +88,7 @@ To run test cases
 | /api/vi/offices      |        Admin can create a politcal offices        |        POST |
 | /api/vi/parties/:id  |      Admin can update a political party name      |       PATCH |
 | /api/vi/profile_pic  |          User can update profile picture          |        POST |
+| /api/vi/parties/:id  |             Admin can delete a party              |      DELETE |
 
 ## License
 

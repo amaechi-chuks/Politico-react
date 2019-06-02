@@ -7,7 +7,7 @@ import DeclareInterestAction from '../actions/interest.actions';
 import FetchInterestAction from '../actions/getInterest.actions';
 
 const { fetchAllParty } = PartyAction;
-const { editParty, createParty, createOffice } = adminUpdateParty;
+const { editParty, createParty, createOffice, deleteParty } = adminUpdateParty;
 const { fetchAllOffice } = OfficeAction;
 const { declareInterest } = DeclareInterestAction;
 const { fetchAllInterestdCandidate } = FetchInterestAction;
@@ -39,6 +39,7 @@ const ProfileContainer = connect(
     editParty,
     createParty,
     createOffice,
+    deleteParty,
   }
 )(UserProfile);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './partycard.css';
 
-const ReviewerRequestCard = ({
+const partyCard = ({
   user,
   name,
   logourl,
@@ -13,7 +13,7 @@ const ReviewerRequestCard = ({
   btnClass1,
   btnClass,
   modalOpen,
-  adminRejectRequest,
+  deleteParty,
 }) => {
   return (
     <div className="main-title">
@@ -49,7 +49,7 @@ const ReviewerRequestCard = ({
               <button
                 type="submit"
                 className={btnClass1}
-                onClick={() => adminRejectRequest()}
+                onClick={() => deleteParty()}
               >
                 {button1}
               </button>
@@ -61,10 +61,10 @@ const ReviewerRequestCard = ({
   );
 };
 
-ReviewerRequestCard.defaultProps = {
+partyCard.defaultProps = {
   user: {},
 };
-ReviewerRequestCard.propTypes = {
+partyCard.propTypes = {
   name: PropTypes.string.isRequired,
   initials: PropTypes.string.isRequired,
   logourl: PropTypes.string.isRequired,
@@ -75,7 +75,7 @@ ReviewerRequestCard.propTypes = {
   hqAddress: PropTypes.string.isRequired,
   user: PropTypes.shape(),
   modalOpen: PropTypes.func.isRequired,
-  adminRejectRequest: PropTypes.func.isRequired,
+  deleteParty: PropTypes.func.isRequired,
 };
 
-export default ReviewerRequestCard;
+export default partyCard;

@@ -58,9 +58,24 @@ const patchItem = (type = 'parties', data) => {
     .then(res => res)
     .catch(err => err);
 };
+const deleteItem = (type = 'parties', data) => {
+  return window
+    .fetch(`${url}/${type}/`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
 export default {
   auth,
   fetchItem,
   postItem,
   patchItem,
+  deleteItem,
 };
