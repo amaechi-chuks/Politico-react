@@ -22,6 +22,7 @@ import LandingPage from '../../Components/LandingPage/LandingPage';
 import InterestedCard from '../../InterestedCandidates/InterestedCards/InterestedCards';
 import InterestedList from '../../InterestedCandidates/InterestedList/InterestedList';
 import UserTab from '../../UserTab/UserTab';
+import Modal from '../../Components/Modals/Modal';
 
 localStorage.setItem('user', '{ "id": 2, "isadmin": "true" }');
 const office = {
@@ -134,6 +135,12 @@ describe('<USER SECTION />', () => {
 describe('<HEADER SECTION  />', () => {
   it('should render header section', () => {
     const wrapper = shallow(<Header />);
+    expect(wrapper.find('div'));
+  });
+});
+describe('<MODAL SECTION  />', () => {
+  it('should render modal section', () => {
+    const wrapper = shallow(<Modal />);
     expect(wrapper.find('div'));
   });
 });

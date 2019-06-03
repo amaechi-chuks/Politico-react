@@ -4,10 +4,11 @@ import { shallow } from 'enzyme';
 // Components
 import LoginPage from '../../LoginPage/LoginPage';
 
-describe('<SignupPage />', () => {
+describe('<LoginPage />', () => {
   it('renders login page', () => {
     const props = {
       auth: { loading: true, redirect: true },
+      login: jest.fn(),
     };
     const wrapper = shallow(<LoginPage {...props} />);
     const inputEvent = {
