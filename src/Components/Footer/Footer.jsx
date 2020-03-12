@@ -4,7 +4,10 @@ const Footer = () => {
   return (
     <div>
       <footer>
-        <p className="credits">Politico | Copyright &copy; Andela 2018</p>
+        <p className="credits">
+          Politico | Copyright &copy; Amaechi-Chuks&nbsp;
+          {new Date().getFullYear()}
+        </p>
       </footer>
     </div>
   );
